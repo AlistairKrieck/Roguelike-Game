@@ -12,6 +12,8 @@ namespace Roguelike_Game
 {
     public partial class Form1 : Form
     {
+        public static List<MapNode> map = new List<MapNode>();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,8 +21,8 @@ namespace Roguelike_Game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Start the game centred on
-            ChangeScreen(this, new CombatScreen());
+            // Start the game centered on the main menu
+            ChangeScreen(this, new MenuScreen());
         }
 
         public static void ChangeScreen(object sender, UserControl next)
