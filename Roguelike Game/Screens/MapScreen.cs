@@ -34,5 +34,15 @@ namespace Roguelike_Game
         {
             Refresh();
         }
+
+        private void MapScreen_Click(object sender, EventArgs e)
+        {
+            //TODO
+            //get code for this from grid stuff (maybe find a more efficient way?)
+            int mouseX = MousePosition.X;
+            int mouseY = MousePosition.Y;
+
+            MapNode node = map.nodes.Find(t => t.x == mouseX);
+        }
     }
 }

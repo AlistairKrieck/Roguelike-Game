@@ -11,9 +11,18 @@ namespace Roguelike_Game
     {
         int maxHealth, health;
         int xpReward;
-        //Attack[] attacks;
+        Attack[] attacks;
         //Item[] loot;
         Image sprite;
 
+        public Enemy(int _maxHp, int _xp)
+        {
+            maxHealth = health = _maxHp;
+            xpReward = _xp;
+
+            // Temp
+            Attack[] attacks = new Attack[1];
+            attacks[0] = new Attack(1, "bash");
+        }
     }
 }

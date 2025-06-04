@@ -40,13 +40,13 @@
             // 
             // MapScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MapScreen";
-            this.Size = new System.Drawing.Size(933, 1046);
+            this.Size = new System.Drawing.Size(700, 850);
+            this.Click += new System.EventHandler(this.MapScreen_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MapScreen_Paint);
             this.ResumeLayout(false);
 

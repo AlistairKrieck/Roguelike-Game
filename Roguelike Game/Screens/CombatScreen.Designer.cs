@@ -35,6 +35,7 @@
             this.attackButton4 = new System.Windows.Forms.Button();
             this.attackButton3 = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.backPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // inventoryButton
@@ -102,6 +103,15 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // backPanel
+            // 
+            this.backPanel.BackColor = System.Drawing.Color.White;
+            this.backPanel.Location = new System.Drawing.Point(25, 3);
+            this.backPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.backPanel.Name = "backPanel";
+            this.backPanel.Size = new System.Drawing.Size(1100, 500);
+            this.backPanel.TabIndex = 7;
+            // 
             // CombatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +124,7 @@
             this.Controls.Add(this.attackButton1);
             this.Controls.Add(this.attackMenuButton);
             this.Controls.Add(this.inventoryButton);
+            this.Controls.Add(this.backPanel);
             this.Name = "CombatScreen";
             this.Size = new System.Drawing.Size(1200, 800);
             this.Load += new System.EventHandler(this.CombatScreen_Load);
@@ -130,5 +141,6 @@
         private System.Windows.Forms.Button attackButton4;
         private System.Windows.Forms.Button attackButton3;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Panel backPanel;
     }
 }
