@@ -37,12 +37,21 @@ namespace Roguelike_Game
 
         private void MapScreen_Click(object sender, EventArgs e)
         {
-            //TODO
-            //get code for this from grid stuff (maybe find a more efficient way?)
-            int mouseX = MousePosition.X;
-            int mouseY = MousePosition.Y;
+            // Get mouse position relative to the map screen
+            Point mousePos = this.PointToClient(Cursor.Position);
 
-            MapNode node = map.nodes.Find(t => t.x == mouseX);
+            // Store mouse x and y values
+            int mouseX = mousePos.X;
+            int mouseY = mousePos.Y;
+
+            // Find if the mouse was in the range of any nodes
+            MapNode node = Array.Find(map.nodes, n => mouseX >= n.x && mouseY >= n.y && mouseX <= n.x + n.diameter && mouseY <= n.y + n.diameter);
+
+            // If a node was clicked, run the OnClick method
+            if (node != null)
+            {
+                node.OnClick(this);
+            }
         }
     }
 }

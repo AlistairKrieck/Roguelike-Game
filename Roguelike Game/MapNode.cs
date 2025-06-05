@@ -34,8 +34,13 @@ namespace Roguelike_Game
             switch (nodeType)
             {
                 case "combat":
+                    // Create a new enemy and send it to the combat screen
+                    CombatScreen.enemy = new Enemy("temp");
+
+                    // Go to the combat screen
                     Form1.ChangeScreen(UC, new CombatScreen());
                     break;
+
                 case "loot":
                     Form1.ChangeScreen(UC, new LootScreen());
                     break;

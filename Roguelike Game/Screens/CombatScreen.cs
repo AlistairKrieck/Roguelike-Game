@@ -12,6 +12,9 @@ namespace Roguelike_Game
 {
     public partial class CombatScreen : UserControl
     {
+        public static Enemy enemy;
+        SolidBrush whiteBrush = new SolidBrush(Color.White);
+
         public CombatScreen()
         {
             InitializeComponent();
@@ -28,7 +31,6 @@ namespace Roguelike_Game
             attackButton3.Location = new Point((this.Width * 2 / 3) - (attackButton3.Width / 2), this.Height - 25 - attackButton3.Height);
             attackButton4.Location = new Point((this.Width * 1 / 3) - (attackButton4.Width / 2), this.Height - 25 - attackButton4.Height);
             backButton.Location = new Point((this.Width * 1 / 9) - (backButton.Width / 2), this.Height - 75 - backButton.Height);
-            backPanel.Location = new Point((this.Width - backPanel.Width) / 2, 50);
 
             // Hide the second set of buttons to start
             attackButton1.Visible = false;
@@ -66,6 +68,19 @@ namespace Roguelike_Game
             attackButton3.Visible = false;
             attackButton4.Visible = false;
             backButton.Visible = false;
+        }
+
+        private void CombatScreen_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.FillRectangle(whiteBrush, (this.Width - 1100) / 2, 50, 1100, 500);
+
+            Image spr = enemy.sprite;
+            e.Graphics.DrawImage(spr, (this.Width - spr.Width) / 2, this.Height - 75 - spr.Height);
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            Refresh();
         }
     }
 }

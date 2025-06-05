@@ -9,20 +9,55 @@ namespace Roguelike_Game
 {
     public class Enemy
     {
-        int maxHealth, health;
-        int xpReward;
-        Attack[] attacks;
-        //Item[] loot;
-        Image sprite;
+        public int maxHealth, health;
+        public int xpReward;
 
-        public Enemy(int _maxHp, int _xp)
+        // Will eventually be replaced with a set of subclasses
+        // Will determine hp and xp ranges and what attacks the enemy can have
+        public string enemyType;
+
+        public Attack[] attacks;
+        //public Item[] loot;
+        public Image sprite;
+
+        public Enemy(string _enemyType)
         {
-            maxHealth = health = _maxHp;
-            xpReward = _xp;
+            enemyType = _enemyType;
+
+            GenerateEnemy();
+            SetSprite();
 
             // Temp
             Attack[] attacks = new Attack[1];
             attacks[0] = new Attack(1, "bash");
+        }
+
+        private void GenerateEnemy()
+        {
+            // Create a random object
+            Random random = new Random();
+
+            // Range of health the enemy can start with
+            int minEnemyHealth = 5;
+            int maxEnemyHealth = 10;
+
+            // Range of xp the player will recieve for defeating the enemy
+            int minXpReward = 3;
+            int maxXpReward = 5;
+
+            // Generate random values within ranges for hp and xp rewards
+            maxHealth = health = random.Next(minEnemyHealth, maxEnemyHealth + 1);
+            xpReward = random.Next(minXpReward, maxXpReward + 1);
+        }
+
+        private void SetSprite()
+        {
+            switch (enemyType)
+            {
+                default:
+                    sprite = Properties.Resources.stolenEnemy;
+                    break;
+            }
         }
     }
 }

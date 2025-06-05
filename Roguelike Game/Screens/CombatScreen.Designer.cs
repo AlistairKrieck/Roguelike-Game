@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.inventoryButton = new System.Windows.Forms.Button();
             this.attackMenuButton = new System.Windows.Forms.Button();
             this.attackButton1 = new System.Windows.Forms.Button();
@@ -35,7 +36,7 @@
             this.attackButton4 = new System.Windows.Forms.Button();
             this.attackButton3 = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.backPanel = new System.Windows.Forms.Panel();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // inventoryButton
@@ -103,14 +104,11 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // backPanel
+            // gameTimer
             // 
-            this.backPanel.BackColor = System.Drawing.Color.White;
-            this.backPanel.Location = new System.Drawing.Point(25, 3);
-            this.backPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.backPanel.Name = "backPanel";
-            this.backPanel.Size = new System.Drawing.Size(1100, 500);
-            this.backPanel.TabIndex = 7;
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // CombatScreen
             // 
@@ -124,10 +122,11 @@
             this.Controls.Add(this.attackButton1);
             this.Controls.Add(this.attackMenuButton);
             this.Controls.Add(this.inventoryButton);
-            this.Controls.Add(this.backPanel);
+            this.DoubleBuffered = true;
             this.Name = "CombatScreen";
             this.Size = new System.Drawing.Size(1200, 800);
             this.Load += new System.EventHandler(this.CombatScreen_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CombatScreen_Paint);
             this.ResumeLayout(false);
 
         }
@@ -141,6 +140,6 @@
         private System.Windows.Forms.Button attackButton4;
         private System.Windows.Forms.Button attackButton3;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Panel backPanel;
+        private System.Windows.Forms.Timer gameTimer;
     }
 }
