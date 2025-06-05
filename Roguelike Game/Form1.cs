@@ -22,7 +22,7 @@ namespace Roguelike_Game
         private void Form1_Load(object sender, EventArgs e)
         {
             // Start the game centered on the main menu
-            ChangeScreen(this, new MenuScreen());
+            ChangeScreen(this, new CombatScreen());
         }
 
         public static void ChangeScreen(object sender, UserControl next)

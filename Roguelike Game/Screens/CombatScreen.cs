@@ -14,10 +14,13 @@ namespace Roguelike_Game
     {
         public static Enemy enemy;
         SolidBrush whiteBrush = new SolidBrush(Color.White);
+        SolidBrush greenBrush = new SolidBrush(Color.Green);
 
         public CombatScreen()
         {
             InitializeComponent();
+
+            enemy = new Enemy("temp");
         }
 
         // Initilaze position of all components
@@ -31,6 +34,9 @@ namespace Roguelike_Game
             attackButton3.Location = new Point((this.Width * 2 / 3) - (attackButton3.Width / 2), this.Height - 25 - attackButton3.Height);
             attackButton4.Location = new Point((this.Width * 1 / 3) - (attackButton4.Width / 2), this.Height - 25 - attackButton4.Height);
             backButton.Location = new Point((this.Width * 1 / 9) - (backButton.Width / 2), this.Height - 75 - backButton.Height);
+
+            enemyHealthLabel.Width = enemy.sprite.Width;
+            enemyHealthLabel.Location = new Point(this.Width * 4 / 5 - enemy.sprite.Width / 2, 25 + 2 * enemy.sprite.Height);
 
             // Hide the second set of buttons to start
             attackButton1.Visible = false;
@@ -75,7 +81,10 @@ namespace Roguelike_Game
             e.Graphics.FillRectangle(whiteBrush, (this.Width - 1100) / 2, 50, 1100, 500);
 
             Image spr = enemy.sprite;
-            e.Graphics.DrawImage(spr, (this.Width - spr.Width) / 2, this.Height - 75 - spr.Height);
+            e.Graphics.DrawImage(spr, this.Width * 4 / 5 - spr.Width / 2, 50 + spr.Height);
+
+            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
+            enemyHealthLabel.Text = $"{enemy.health} / {enemy.maxHealth}";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)

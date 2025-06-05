@@ -37,6 +37,7 @@
             this.attackButton3 = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.enemyHealthLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // inventoryButton
@@ -110,11 +111,22 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // enemyHealthLabel
+            // 
+            this.enemyHealthLabel.BackColor = System.Drawing.Color.Transparent;
+            this.enemyHealthLabel.Location = new System.Drawing.Point(384, 86);
+            this.enemyHealthLabel.Name = "enemyHealthLabel";
+            this.enemyHealthLabel.Size = new System.Drawing.Size(100, 25);
+            this.enemyHealthLabel.TabIndex = 7;
+            this.enemyHealthLabel.Text = "number";
+            this.enemyHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CombatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.Controls.Add(this.enemyHealthLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.attackButton3);
             this.Controls.Add(this.attackButton4);
@@ -141,5 +153,6 @@
         private System.Windows.Forms.Button attackButton3;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label enemyHealthLabel;
     }
 }
