@@ -33,6 +33,7 @@ namespace Roguelike_Game
 
             // Create starting node where the player will begin
             nodes[0] = new MapNode(UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, nodeSize, "start");
+            nodes[0].passed = true;
 
             // First row
             nodes[1] = new MapNode(UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
@@ -53,7 +54,8 @@ namespace Roguelike_Game
             Random random = new Random();
 
             // Choses randomly between combat and loot rooms
-            switch (random.Next(0, 2))
+            // TEMP LIMITED TO ONLY COMBAT ROOMS
+            switch (random.Next(0, 1))
             {
                 case 0:
                     type = "combat";

@@ -12,22 +12,34 @@ namespace Roguelike_Game
 {
     public partial class MapScreen : UserControl
     {
-        Map map = new Map();
+        int row = 0;
 
         public MapScreen()
         {
             InitializeComponent();
-
-            map.CreateMap(this);
         }
 
         private void MapScreen_Paint(object sender, PaintEventArgs e)
         {
-            Pen b = new Pen(Color.White);
-            foreach (var n in map.nodes)
+            Pen p = new Pen(Color.White);
+            SolidBrush sb = new SolidBrush(Color.White);
+
+            foreach (var n in Form1.map.nodes)
             {
-                e.Graphics.DrawEllipse(b, n.x, n.y, n.diameter, n.diameter);
+                if (n.passed == false)
+                {
+                    e.Graphics.DrawEllipse(p, n.x, n.y, n.diameter, n.diameter);
+                }
+
+                else
+                {
+                    e.Graphics.FillEllipse(sb, n.x, n.y, n.diameter, n.diameter);
+                }
             }
+
+            hpLabel.Text = $"HP: {Form1.player.hp} / {Form1.player.maxHp}";
+            levelLabel.Text = $"LVL: {Form1.player.level}";
+            xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -45,7 +57,7 @@ namespace Roguelike_Game
             int mouseY = mousePos.Y;
 
             // Find if the mouse was in the range of any nodes
-            MapNode node = Array.Find(map.nodes, n => mouseX >= n.x && mouseY >= n.y && mouseX <= n.x + n.diameter && mouseY <= n.y + n.diameter);
+            MapNode node = Array.Find(Form1.map.nodes, n => mouseX >= n.x && mouseY >= n.y && mouseX <= n.x + n.diameter && mouseY <= n.y + n.diameter);
 
             // If a node was clicked, run the OnClick method
             if (node != null)

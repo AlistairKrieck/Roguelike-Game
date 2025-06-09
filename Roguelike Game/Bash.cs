@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Roguelike_Game
 {
-    public class Attack
+    public class Bash : Attack
     {
-        public int damage;
-        public string name;
+        public Bash()
+        {
+            damage = 1;
+            name = "Bash";
+        }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Roguelike_Game.Properties
+namespace Roguelike_Game
 {
     public class Player
     {
@@ -18,15 +19,22 @@ namespace Roguelike_Game.Properties
 
         public Attack[] attacks = new Attack[4];
 
+        public Image sprite;
+
         public Player()
         {
             // Init all variables on new object creation
             maxHp = hp = startingHp;
             xp = 0;
             level = 0;
+            attacks[0] = new Bash();
+            attacks[1] = new Bash();
+            attacks[2] = new Bash();
+            attacks[3] = new Bash();
+            sprite = Properties.Resources.stolenPlayer;
         }
 
-        public void LevelUp()
+        public void CheckLevelUp()
         {
             if (xp >= xpToNextLevel[level] && level < maxLevel)
             {
@@ -35,7 +43,8 @@ namespace Roguelike_Game.Properties
                 xp = 0;
 
                 // Fully heal and increase max health
-                maxHp = hp = maxHp + levelUpHpReward;
+                maxHp += levelUpHpReward;
+                hp = maxHp;
             }
         }
     }

@@ -28,8 +28,8 @@ namespace Roguelike_Game
             SetSprite();
 
             // Temp
-            Attack[] attacks = new Attack[1];
-            attacks[0] = new Attack(1, "bash");
+            attacks = new Attack[1];
+            attacks[0] = new Bash();
         }
 
         private void GenerateEnemy()
@@ -58,6 +58,20 @@ namespace Roguelike_Game
                     sprite = Properties.Resources.stolenEnemy;
                     break;
             }
+        }
+
+        public void OnDeath()
+        {
+            Form1.player.xp += xpReward;
+        }
+
+        public Attack Attack()
+        {
+            Random random = new Random();
+
+            int atk = random.Next(0, attacks.Length);
+
+            return attacks[atk];
         }
     }
 }

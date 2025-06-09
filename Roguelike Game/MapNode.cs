@@ -16,7 +16,7 @@ namespace Roguelike_Game
         string nodeType;
 
         // Whether the map has been chosen or no longer has a path to get to it
-        bool past;
+        public bool passed;
 
         public MapNode(int _x, int _y, int _diameter, string _nodeType)
         {
@@ -25,25 +25,30 @@ namespace Roguelike_Game
             diameter = _diameter;
             nodeType = _nodeType;
 
-            past = false;
+            passed = false;
         }
 
         // Go to relevant screen when clicked
         public void OnClick(UserControl UC)
         {
-            switch (nodeType)
+            if (passed == false)
             {
-                case "combat":
-                    // Create a new enemy and send it to the combat screen
-                    CombatScreen.enemy = new Enemy("temp");
+                switch (nodeType)
+                {
+                    case "combat":
+                        // Create a new enemy and send it to the combat screen
+                        CombatScreen.enemy = new Enemy("temp");
 
-                    // Go to the combat screen
-                    Form1.ChangeScreen(UC, new CombatScreen());
-                    break;
+                        // Go to the combat screen
+                        Form1.ChangeScreen(UC, new CombatScreen());
+                        break;
 
-                case "loot":
-                    Form1.ChangeScreen(UC, new LootScreen());
-                    break;
+                    case "loot":
+                        Form1.ChangeScreen(UC, new LootScreen());
+                        break;
+                }
+
+                passed = true;
             }
         }
     }

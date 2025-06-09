@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attack.cs" />
+    <Compile Include="Bash.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapNode.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="MenuScreen.Designer.cs">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Player.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Screens\InventoryScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stolenEnemy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stolenPlayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

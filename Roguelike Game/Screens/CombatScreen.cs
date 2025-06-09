@@ -15,6 +15,9 @@ namespace Roguelike_Game
         public static Enemy enemy;
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
+        SolidBrush redBrush = new SolidBrush(Color.Red);
+
+        bool playerTurn = true;
 
         public CombatScreen()
         {
@@ -29,20 +32,31 @@ namespace Roguelike_Game
             // Initialize positions of all labels and buttons
             inventoryButton.Location = new Point((this.Width - inventoryButton.Width) / 2, this.Height - 25 - inventoryButton.Height);
             attackMenuButton.Location = new Point((this.Width - attackMenuButton.Width) / 2, this.Height - 125 - attackMenuButton.Height);
-            attackButton1.Location = new Point((this.Width * 2 / 3) - (attackButton1.Width / 2), this.Height - 125 - attackButton1.Height);
-            attackButton2.Location = new Point((this.Width * 1 / 3) - (attackButton2.Width / 2), this.Height - 125 - attackButton2.Height);
-            attackButton3.Location = new Point((this.Width * 2 / 3) - (attackButton3.Width / 2), this.Height - 25 - attackButton3.Height);
-            attackButton4.Location = new Point((this.Width * 1 / 3) - (attackButton4.Width / 2), this.Height - 25 - attackButton4.Height);
+            attackButton1.Location = new Point((this.Width * 1 / 3) - (attackButton1.Width / 2), this.Height - 125 - attackButton1.Height);
+            attackButton2.Location = new Point((this.Width * 2 / 3) - (attackButton2.Width / 2), this.Height - 125 - attackButton2.Height);
+            attackButton3.Location = new Point((this.Width * 1 / 3) - (attackButton3.Width / 2), this.Height - 25 - attackButton3.Height);
+            attackButton4.Location = new Point((this.Width * 2 / 3) - (attackButton4.Width / 2), this.Height - 25 - attackButton4.Height);
             backButton.Location = new Point((this.Width * 1 / 9) - (backButton.Width / 2), this.Height - 75 - backButton.Height);
 
             enemyHealthLabel.Width = enemy.sprite.Width;
             enemyHealthLabel.Location = new Point(this.Width * 4 / 5 - enemy.sprite.Width / 2, 25 + 2 * enemy.sprite.Height);
 
-            // Hide the second set of buttons to start
+            playerHealthLabel.Width = Form1.player.sprite.Width;
+            playerHealthLabel.Location = new Point(this.Width * 1 / 5 - Form1.player.sprite.Width / 2, 115 + 2 * Form1.player.sprite.Height);
+
+            // Init text and hide the second set of buttons to start
             attackButton1.Visible = false;
+            attackButton1.Text = Form1.player.attacks[0].name;
+
             attackButton2.Visible = false;
+            attackButton2.Text = Form1.player.attacks[1].name;
+
             attackButton3.Visible = false;
+            attackButton3.Text = Form1.player.attacks[2].name;
+
             attackButton4.Visible = false;
+            attackButton4.Text = Form1.player.attacks[3].name;
+
             backButton.Visible = false;
         }
 
@@ -83,13 +97,58 @@ namespace Roguelike_Game
             Image spr = enemy.sprite;
             e.Graphics.DrawImage(spr, this.Width * 4 / 5 - spr.Width / 2, 50 + spr.Height);
 
-            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
+            // Display the enemy health
+            e.Graphics.FillRectangle(redBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
+            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width * enemy.health / enemy.maxHealth, 25);
             enemyHealthLabel.Text = $"{enemy.health} / {enemy.maxHealth}";
+
+            // Draw the player
+            Image pSpr = Form1.player.sprite;
+            e.Graphics.DrawImage(pSpr, this.Width * 1 / 5 - pSpr.Width / 2, 200 + spr.Height);
+
+            // Display the player health
+            e.Graphics.FillRectangle(redBrush, this.Width * 1 / 5 - pSpr.Width / 2, 115 + 2 * pSpr.Height, pSpr.Width, 25);
+            e.Graphics.FillRectangle(greenBrush, this.Width * 1 / 5 - pSpr.Width / 2, 115 + 2 * pSpr.Height, pSpr.Width * Form1.player.hp / Form1.player.maxHp, 25);
+            playerHealthLabel.Text = $"{Form1.player.hp} / {Form1.player.maxHp}";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            if (Form1.player.hp - enemy.Attack().damage > 0)
+            {
+                Form1.player.hp -= enemy.Attack().damage;
+            }
+
+            else if (Form1.player.hp - enemy.Attack().damage <= 0)
+            {
+                Form1.ChangeScreen(this, new EndScreen());
+            }
+
             Refresh();
+        }
+
+        private void UseAttack(object sender, EventArgs e)
+        {
+            playerTurn = false;
+
+            Button b = (Button)sender;
+
+            int atk = Convert.ToInt32(b.Name.Substring(12));
+
+            if (enemy.health - Form1.player.attacks[atk - 1].damage > 0)
+            {
+                enemy.health -= Form1.player.attacks[atk - 1].damage;
+            }
+
+            else if (enemy.health - Form1.player.attacks[atk - 1].damage <= 0)
+            {
+                enemy.OnDeath();
+
+                Form1.player.CheckLevelUp();
+
+                Form1.ChangeScreen(this, new MapScreen());
+            }
+
         }
     }
 }

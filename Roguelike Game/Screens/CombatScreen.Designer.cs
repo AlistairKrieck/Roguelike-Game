@@ -38,6 +38,7 @@
             this.backButton = new System.Windows.Forms.Button();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.enemyHealthLabel = new System.Windows.Forms.Label();
+            this.playerHealthLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // inventoryButton
@@ -67,6 +68,7 @@
             this.attackButton1.TabIndex = 2;
             this.attackButton1.Text = "Attack";
             this.attackButton1.UseVisualStyleBackColor = true;
+            this.attackButton1.Click += new System.EventHandler(this.UseAttack);
             // 
             // attackButton2
             // 
@@ -76,6 +78,7 @@
             this.attackButton2.TabIndex = 3;
             this.attackButton2.Text = "Attack";
             this.attackButton2.UseVisualStyleBackColor = true;
+            this.attackButton2.Click += new System.EventHandler(this.UseAttack);
             // 
             // attackButton4
             // 
@@ -85,6 +88,7 @@
             this.attackButton4.TabIndex = 4;
             this.attackButton4.Text = "Attack";
             this.attackButton4.UseVisualStyleBackColor = true;
+            this.attackButton4.Click += new System.EventHandler(this.UseAttack);
             // 
             // attackButton3
             // 
@@ -94,6 +98,7 @@
             this.attackButton3.TabIndex = 5;
             this.attackButton3.Text = "Attack";
             this.attackButton3.UseVisualStyleBackColor = true;
+            this.attackButton3.Click += new System.EventHandler(this.UseAttack);
             // 
             // backButton
             // 
@@ -121,11 +126,22 @@
             this.enemyHealthLabel.Text = "number";
             this.enemyHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // playerHealthLabel
+            // 
+            this.playerHealthLabel.BackColor = System.Drawing.Color.Transparent;
+            this.playerHealthLabel.Location = new System.Drawing.Point(570, 149);
+            this.playerHealthLabel.Name = "playerHealthLabel";
+            this.playerHealthLabel.Size = new System.Drawing.Size(100, 25);
+            this.playerHealthLabel.TabIndex = 8;
+            this.playerHealthLabel.Text = "number";
+            this.playerHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CombatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.Controls.Add(this.playerHealthLabel);
             this.Controls.Add(this.enemyHealthLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.attackButton3);
@@ -154,5 +170,6 @@
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label enemyHealthLabel;
+        private System.Windows.Forms.Label playerHealthLabel;
     }
 }
