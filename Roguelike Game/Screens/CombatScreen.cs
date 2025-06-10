@@ -12,6 +12,16 @@ namespace Roguelike_Game
 {
     public partial class CombatScreen : UserControl
     {
+        //TODO
+        // PP for attacks
+        // Boss
+        // Map connections
+        // Floors
+        // Attack & enemy variety
+        /*
+         * Use an array of enemies that can appear on a specific floor
+        */
+
         public static Enemy enemy;
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
