@@ -27,10 +27,10 @@ namespace Roguelike_Game
             maxHp = hp = startingHp;
             xp = 0;
             level = 0;
-            attacks[0] = new Bash();
-            attacks[1] = new Bash();
-            attacks[2] = new Bash();
-            attacks[3] = new Bash();
+            attacks[0] = new Slash();
+            attacks[1] = new Heal();
+            attacks[2] = null;
+            attacks[3] = null;
             sprite = Properties.Resources.stolenPlayer;
         }
 
@@ -45,6 +45,20 @@ namespace Roguelike_Game
                 // Fully heal and increase max health
                 maxHp += levelUpHpReward;
                 hp = maxHp;
+
+                foreach (Attack a in attacks)
+                {
+                    if (a is Heal)
+                    {
+                        Heal h = (Heal)a;
+                        h.UpdateHealing();
+                    }
+                }
+
+                if (level == 2)
+                {
+                    attacks[2] = new BigBash();
+                }
             }
         }
     }

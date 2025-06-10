@@ -46,15 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attack.cs" />
-    <Compile Include="Bash.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Attacks\Attack.cs" />
+    <Compile Include="Attacks\BigBash.cs" />
+    <Compile Include="Attacks\Slash.cs" />
+    <Compile Include="Attacks\Heal.cs" />
+    <Compile Include="Attacks\Bash.cs" />
+    <Compile Include="Enemies\SmallEnemy.cs" />
+    <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapNode.cs" />
-    <Compile Include="MenuScreen.cs">
+    <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MenuScreen.Designer.cs">
+    <Compile Include="Screens\MenuScreen.Designer.cs">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
@@ -96,7 +100,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MenuScreen.resx">
+    <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\InventoryScreen.resx">

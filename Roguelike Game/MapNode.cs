@@ -9,17 +9,19 @@ namespace Roguelike_Game
 {
     public class MapNode
     {
-        public int x, y;
+        // Position
+        public int x, y, row;
 
-        //TEMP until boss node is able to be implemented
+        // TEMP until boss node is able to be implemented
         public int diameter;
         string nodeType;
 
         // Whether the map has been chosen or no longer has a path to get to it
         public bool passed;
 
-        public MapNode(int _x, int _y, int _diameter, string _nodeType)
+        public MapNode(int _row, int _x, int _y, int _diameter, string _nodeType)
         {
+            row = _row;
             x = _x;
             y = _y;
             diameter = _diameter;
@@ -31,13 +33,16 @@ namespace Roguelike_Game
         // Go to relevant screen when clicked
         public void OnClick(UserControl UC)
         {
-            if (passed == false)
+            if (passed == false && MapScreen.currentRow == this.row)
             {
+                // Move up one row
+                MapScreen.currentRow++;
+
                 switch (nodeType)
                 {
                     case "combat":
                         // Create a new enemy and send it to the combat screen
-                        CombatScreen.enemy = new Enemy("temp");
+                        CombatScreen.enemy = GenEnemyNode();
 
                         // Go to the combat screen
                         Form1.ChangeScreen(UC, new CombatScreen());
@@ -48,8 +53,40 @@ namespace Roguelike_Game
                         break;
                 }
 
-                passed = true;
+                PassNodes();
             }
+        }
+
+
+        private void PassNodes()
+        {
+            foreach (MapNode n in Form1.map.nodes)
+            {
+                if (n.row <= this.row)
+                {
+                    n.passed = true;
+                }
+            }
+        }
+
+
+        private Enemy GenEnemyNode()
+        {
+            Enemy e = new Enemy();
+
+            if (Form1.map.floor == 1)
+            {
+                e = new SmallEnemy();
+            }
+            // else do other types of enemy
+
+            // TEMP
+            else
+            {
+                e = new SmallEnemy();
+            }
+
+            return e;
         }
     }
 }

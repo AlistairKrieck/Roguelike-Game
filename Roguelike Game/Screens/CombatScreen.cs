@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Roguelike_Game
@@ -23,7 +23,7 @@ namespace Roguelike_Game
         {
             InitializeComponent();
 
-            enemy = new Enemy("temp");
+            enemy = new SmallEnemy();
         }
 
         // Initilaze position of all components
@@ -52,10 +52,27 @@ namespace Roguelike_Game
             attackButton2.Text = Form1.player.attacks[1].name;
 
             attackButton3.Visible = false;
-            attackButton3.Text = Form1.player.attacks[2].name;
-
             attackButton4.Visible = false;
-            attackButton4.Text = Form1.player.attacks[3].name;
+
+            // If the attacks do not exist, set text to empty
+            try
+            {
+                attackButton3.Text = Form1.player.attacks[2].name;
+            }
+            catch
+            {
+                attackButton3.Text = "";
+            }
+
+            try
+            {
+
+                attackButton4.Text = Form1.player.attacks[3].name;
+            }
+            catch
+            {
+                attackButton4.Text = "";
+            }
 
             backButton.Visible = false;
         }
@@ -114,15 +131,18 @@ namespace Roguelike_Game
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            if (Form1.player.hp - enemy.Attack().damage > 0)
+            if (playerTurn == false)
             {
-                Form1.player.hp -= enemy.Attack().damage;
+                Refresh();
+
+                //Temp wait to make the game less instant
+                Thread.Sleep(500);
+
+                EnemyAttack();
+
+                playerTurn = true;
             }
 
-            else if (Form1.player.hp - enemy.Attack().damage <= 0)
-            {
-                Form1.ChangeScreen(this, new EndScreen());
-            }
 
             Refresh();
         }
@@ -142,6 +162,8 @@ namespace Roguelike_Game
 
             else if (enemy.health - Form1.player.attacks[atk - 1].damage <= 0)
             {
+                gameTimer.Stop();
+
                 enemy.OnDeath();
 
                 Form1.player.CheckLevelUp();
@@ -149,6 +171,34 @@ namespace Roguelike_Game
                 Form1.ChangeScreen(this, new MapScreen());
             }
 
+            if (Form1.player.attacks[atk - 1] is Heal)
+            {
+                Heal h = (Heal)Form1.player.attacks[atk - 1];
+
+                if (Form1.player.hp + h.healing <= Form1.player.maxHp)
+                {
+                    Form1.player.hp += h.healing;
+                }
+                else
+                {
+                    Form1.player.hp = Form1.player.maxHp;
+                }
+            }
+        }
+
+        private void EnemyAttack()
+        {
+            Attack a = enemy.Attack();
+
+            if (Form1.player.hp - a.damage > 0)
+            {
+                Form1.player.hp -= a.damage;
+            }
+
+            else if (Form1.player.hp - a.damage <= 0)
+            {
+                Form1.ChangeScreen(this, new EndScreen());
+            }
         }
     }
 }

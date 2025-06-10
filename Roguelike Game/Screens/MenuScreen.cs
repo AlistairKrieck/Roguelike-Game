@@ -27,6 +27,10 @@ namespace Roguelike_Game
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            // Reset and randomize the map
+            Form1.map.CreateMap(new MapScreen());
+            Form1.map.floor = 1;
+
             // Go to the map screen
             Form1.ChangeScreen(this, new MapScreen());
         }

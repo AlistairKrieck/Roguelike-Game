@@ -22,8 +22,6 @@ namespace Roguelike_Game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            map.CreateMap(new MapScreen());
-
             // Start the game centered on the main menu
             ChangeScreen(this, new MenuScreen());
         }

@@ -12,7 +12,7 @@ namespace Roguelike_Game
 {
     public partial class MapScreen : UserControl
     {
-        int row = 0;
+        public static int currentRow = 1;
 
         public MapScreen()
         {

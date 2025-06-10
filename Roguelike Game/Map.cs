@@ -18,6 +18,9 @@ namespace Roguelike_Game
 
         // Stores each map node in an array
         public MapNode[] nodes;
+
+        public int floor;
+
         public Map()
         {
 
@@ -32,17 +35,17 @@ namespace Roguelike_Game
             int n = 0;
 
             // Create starting node where the player will begin
-            nodes[0] = new MapNode(UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, nodeSize, "start");
+            nodes[0] = new MapNode(0, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, nodeSize, "start");
             nodes[0].passed = true;
 
             // First row
-            nodes[1] = new MapNode(UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[2] = new MapNode(UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[1] = new MapNode(1, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[2] = new MapNode(1, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
 
             // Second row
-            nodes[3] = new MapNode(UC.Width * 1 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[4] = new MapNode(UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[5] = new MapNode(UC.Width * 7 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[3] = new MapNode(2, UC.Width * 1 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[4] = new MapNode(2, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[5] = new MapNode(2, UC.Width * 7 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
         }
 
         public string GetRandNodeType()

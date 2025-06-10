@@ -43,18 +43,20 @@
             // 
             // inventoryButton
             // 
-            this.inventoryButton.Location = new System.Drawing.Point(266, 569);
+            this.inventoryButton.Location = new System.Drawing.Point(355, 700);
+            this.inventoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inventoryButton.Name = "inventoryButton";
-            this.inventoryButton.Size = new System.Drawing.Size(615, 88);
+            this.inventoryButton.Size = new System.Drawing.Size(820, 108);
             this.inventoryButton.TabIndex = 0;
             this.inventoryButton.Text = "Inventory";
             this.inventoryButton.UseVisualStyleBackColor = true;
             // 
             // attackMenuButton
             // 
-            this.attackMenuButton.Location = new System.Drawing.Point(266, 455);
+            this.attackMenuButton.Location = new System.Drawing.Point(355, 560);
+            this.attackMenuButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.attackMenuButton.Name = "attackMenuButton";
-            this.attackMenuButton.Size = new System.Drawing.Size(615, 88);
+            this.attackMenuButton.Size = new System.Drawing.Size(820, 108);
             this.attackMenuButton.TabIndex = 1;
             this.attackMenuButton.Text = "Attack";
             this.attackMenuButton.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // 
             // attackButton1
             // 
-            this.attackButton1.Location = new System.Drawing.Point(72, 257);
+            this.attackButton1.Location = new System.Drawing.Point(96, 316);
+            this.attackButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.attackButton1.Name = "attackButton1";
-            this.attackButton1.Size = new System.Drawing.Size(356, 88);
+            this.attackButton1.Size = new System.Drawing.Size(475, 108);
             this.attackButton1.TabIndex = 2;
             this.attackButton1.Text = "Attack";
             this.attackButton1.UseVisualStyleBackColor = true;
@@ -72,9 +75,10 @@
             // 
             // attackButton2
             // 
-            this.attackButton2.Location = new System.Drawing.Point(434, 257);
+            this.attackButton2.Location = new System.Drawing.Point(579, 316);
+            this.attackButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.attackButton2.Name = "attackButton2";
-            this.attackButton2.Size = new System.Drawing.Size(356, 88);
+            this.attackButton2.Size = new System.Drawing.Size(475, 108);
             this.attackButton2.TabIndex = 3;
             this.attackButton2.Text = "Attack";
             this.attackButton2.UseVisualStyleBackColor = true;
@@ -82,9 +86,10 @@
             // 
             // attackButton4
             // 
-            this.attackButton4.Location = new System.Drawing.Point(434, 351);
+            this.attackButton4.Location = new System.Drawing.Point(579, 432);
+            this.attackButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.attackButton4.Name = "attackButton4";
-            this.attackButton4.Size = new System.Drawing.Size(356, 88);
+            this.attackButton4.Size = new System.Drawing.Size(475, 108);
             this.attackButton4.TabIndex = 4;
             this.attackButton4.Text = "Attack";
             this.attackButton4.UseVisualStyleBackColor = true;
@@ -92,9 +97,10 @@
             // 
             // attackButton3
             // 
-            this.attackButton3.Location = new System.Drawing.Point(72, 351);
+            this.attackButton3.Location = new System.Drawing.Point(96, 432);
+            this.attackButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.attackButton3.Name = "attackButton3";
-            this.attackButton3.Size = new System.Drawing.Size(356, 88);
+            this.attackButton3.Size = new System.Drawing.Size(475, 108);
             this.attackButton3.TabIndex = 5;
             this.attackButton3.Text = "Attack";
             this.attackButton3.UseVisualStyleBackColor = true;
@@ -102,9 +108,10 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(796, 306);
+            this.backButton.Location = new System.Drawing.Point(1062, 376);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(97, 88);
+            this.backButton.Size = new System.Drawing.Size(129, 108);
             this.backButton.TabIndex = 6;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
@@ -119,9 +126,10 @@
             // enemyHealthLabel
             // 
             this.enemyHealthLabel.BackColor = System.Drawing.Color.Transparent;
-            this.enemyHealthLabel.Location = new System.Drawing.Point(384, 86);
+            this.enemyHealthLabel.Location = new System.Drawing.Point(512, 106);
+            this.enemyHealthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.enemyHealthLabel.Name = "enemyHealthLabel";
-            this.enemyHealthLabel.Size = new System.Drawing.Size(100, 25);
+            this.enemyHealthLabel.Size = new System.Drawing.Size(133, 31);
             this.enemyHealthLabel.TabIndex = 7;
             this.enemyHealthLabel.Text = "number";
             this.enemyHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,16 +137,17 @@
             // playerHealthLabel
             // 
             this.playerHealthLabel.BackColor = System.Drawing.Color.Transparent;
-            this.playerHealthLabel.Location = new System.Drawing.Point(570, 149);
+            this.playerHealthLabel.Location = new System.Drawing.Point(760, 183);
+            this.playerHealthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.playerHealthLabel.Name = "playerHealthLabel";
-            this.playerHealthLabel.Size = new System.Drawing.Size(100, 25);
+            this.playerHealthLabel.Size = new System.Drawing.Size(133, 31);
             this.playerHealthLabel.TabIndex = 8;
             this.playerHealthLabel.Text = "number";
             this.playerHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CombatScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.Controls.Add(this.playerHealthLabel);
@@ -151,8 +160,9 @@
             this.Controls.Add(this.attackMenuButton);
             this.Controls.Add(this.inventoryButton);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CombatScreen";
-            this.Size = new System.Drawing.Size(1200, 800);
+            this.Size = new System.Drawing.Size(1600, 985);
             this.Load += new System.EventHandler(this.CombatScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CombatScreen_Paint);
             this.ResumeLayout(false);
