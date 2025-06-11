@@ -13,13 +13,12 @@ namespace Roguelike_Game
     public partial class CombatScreen : UserControl
     {
         //TODO
-        // PP for attacks
         // Boss
         // Map connections
         // Floors
         // Attack & enemy variety
         /*
-         * Use an array of enemies that can appear on a specific floor
+         * Use an array of enemies that can appear on a specific floor (?)
         */
 
         public static Enemy enemy;
@@ -54,35 +53,11 @@ namespace Roguelike_Game
             playerHealthLabel.Width = Form1.player.sprite.Width;
             playerHealthLabel.Location = new Point(this.Width * 1 / 5 - Form1.player.sprite.Width / 2, 115 + 2 * Form1.player.sprite.Height);
 
-            // Init text and hide the second set of buttons to start
+            // Hide the second set of buttons to start
             attackButton1.Visible = false;
-            attackButton1.Text = Form1.player.attacks[0].name;
-
             attackButton2.Visible = false;
-            attackButton2.Text = Form1.player.attacks[1].name;
-
             attackButton3.Visible = false;
             attackButton4.Visible = false;
-
-            // If the attacks do not exist, set text to empty
-            try
-            {
-                attackButton3.Text = Form1.player.attacks[2].name;
-            }
-            catch
-            {
-                attackButton3.Text = "";
-            }
-
-            try
-            {
-
-                attackButton4.Text = Form1.player.attacks[3].name;
-            }
-            catch
-            {
-                attackButton4.Text = "";
-            }
 
             backButton.Visible = false;
         }
@@ -126,8 +101,8 @@ namespace Roguelike_Game
 
             // Display the enemy health
             e.Graphics.FillRectangle(redBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
-            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width * enemy.health / enemy.maxHealth, 25);
-            enemyHealthLabel.Text = $"{enemy.health} / {enemy.maxHealth}";
+            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width * enemy.hp / enemy.maxHp, 25);
+            enemyHealthLabel.Text = $"{enemy.hp} / {enemy.maxHp}";
 
             // Draw the player
             Image pSpr = Form1.player.sprite;
@@ -137,6 +112,11 @@ namespace Roguelike_Game
             e.Graphics.FillRectangle(redBrush, this.Width * 1 / 5 - pSpr.Width / 2, 115 + 2 * pSpr.Height, pSpr.Width, 25);
             e.Graphics.FillRectangle(greenBrush, this.Width * 1 / 5 - pSpr.Width / 2, 115 + 2 * pSpr.Height, pSpr.Width * Form1.player.hp / Form1.player.maxHp, 25);
             playerHealthLabel.Text = $"{Form1.player.hp} / {Form1.player.maxHp}";
+
+            attackButton1.Text = $"{Form1.player.attacks[0].name}\nPP:{Form1.player.attacks[0].pp} / {Form1.player.attacks[0].ppMax}";
+            attackButton2.Text = $"{Form1.player.attacks[1].name}\nPP:{Form1.player.attacks[1].pp} / {Form1.player.attacks[1].ppMax}";
+            attackButton3.Text = $"{Form1.player.attacks[2].name}\nPP:{Form1.player.attacks[2].pp} / {Form1.player.attacks[2].ppMax}";
+            attackButton4.Text = $"{Form1.player.attacks[3].name}\nPP:{Form1.player.attacks[3].pp} / {Form1.player.attacks[3].ppMax}";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -159,20 +139,37 @@ namespace Roguelike_Game
 
         private void UseAttack(object sender, EventArgs e)
         {
-            playerTurn = false;
-
             Button b = (Button)sender;
 
-            int atk = Convert.ToInt32(b.Name.Substring(12));
+            Attack a = Form1.player.attacks[Convert.ToInt32(b.Name.Substring(12)) - 1];
 
-            if (enemy.health - Form1.player.attacks[atk - 1].damage > 0)
+            // Stop the player from using an attack if it's out off pp
+            if (a.pp <= 0)
             {
-                enemy.health -= Form1.player.attacks[atk - 1].damage;
+                return;
             }
 
-            else if (enemy.health - Form1.player.attacks[atk - 1].damage <= 0)
+            if (enemy.hp - a.damage > 0)
+            {
+                enemy.hp -= a.damage;
+            }
+
+            // If the enemy dies
+            else if (enemy.hp - a.damage <= 0)
             {
                 gameTimer.Stop();
+
+                // Reset power points for all player attacks on enemy kill
+                foreach (Attack atk in Form1.player.attacks)
+                {
+                    atk.pp = atk.ppMax;
+                }
+
+                enemy.hp -= a.damage;
+
+                Refresh();
+                Thread.Sleep(500);
+
 
                 enemy.OnDeath();
 
@@ -181,19 +178,27 @@ namespace Roguelike_Game
                 Form1.ChangeScreen(this, new MapScreen());
             }
 
-            if (Form1.player.attacks[atk - 1] is Heal)
+            // Heal player when using the "Heal" attack
+            if (a is PlayerHeal)
             {
-                Heal h = (Heal)Form1.player.attacks[atk - 1];
+                PlayerHeal h = (PlayerHeal)a;
 
+                // Prevent healing from going over max health
                 if (Form1.player.hp + h.healing <= Form1.player.maxHp)
                 {
                     Form1.player.hp += h.healing;
                 }
+
                 else
                 {
                     Form1.player.hp = Form1.player.maxHp;
                 }
             }
+
+            // Reduce used attacks power points by 1
+            a.pp--;
+
+            playerTurn = false;
         }
 
         private void EnemyAttack()
@@ -208,6 +213,20 @@ namespace Roguelike_Game
             else if (Form1.player.hp - a.damage <= 0)
             {
                 Form1.ChangeScreen(this, new EndScreen());
+            }
+
+            if (a is EnemyHeal)
+            {
+                EnemyHeal h = (EnemyHeal)a;
+
+                if (enemy.hp + h.healing <= enemy.maxHp)
+                {
+                    enemy.hp += h.healing;
+                }
+                else
+                {
+                    enemy.hp = enemy.maxHp;
+                }
             }
         }
     }

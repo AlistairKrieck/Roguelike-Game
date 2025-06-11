@@ -47,14 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attacks\Attack.cs" />
+    <Compile Include="Attacks\Placeholder.cs" />
     <Compile Include="Attacks\BigBash.cs" />
+    <Compile Include="Attacks\EnemyHeal.cs" />
     <Compile Include="Attacks\Slash.cs" />
-    <Compile Include="Attacks\Heal.cs" />
+    <Compile Include="Attacks\PlayerHeal.cs" />
     <Compile Include="Attacks\Bash.cs" />
     <Compile Include="Enemies\SmallEnemy.cs" />
     <Compile Include="Enemies\Enemy.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MapNode.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\BossNode.cs" />
+    <Compile Include="Map\MapNode.cs" />
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>

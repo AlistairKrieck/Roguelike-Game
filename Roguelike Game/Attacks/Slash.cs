@@ -10,6 +10,7 @@ namespace Roguelike_Game
     {
         public Slash()
         {
+            pp = ppMax = 3;
             damage = 2;
             name = "Slash";
         }

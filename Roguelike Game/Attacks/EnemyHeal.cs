@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Roguelike_Game
 {
-    public class Heal : Attack
+    public class EnemyHeal : Attack
     {
         public int healing;
 
-        public Heal()
+        public EnemyHeal()
         {
             // Default to 1
             healing = 1;
@@ -19,10 +19,10 @@ namespace Roguelike_Game
             name = "Heal";
         }
 
-        // Increase healing amount by player level
+        // Increase healing amount by the floor
         public void UpdateHealing()
         {
-            healing = Form1.player.level + 1;
+            healing = Form1.map.floor + 1;
         }
     }
 }

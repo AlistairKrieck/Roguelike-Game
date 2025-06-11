@@ -10,6 +10,7 @@ namespace Roguelike_Game
     {
         public BigBash()
         {
+            pp = ppMax = 5;
             damage = 3;
             name = "Big Bash";
         }

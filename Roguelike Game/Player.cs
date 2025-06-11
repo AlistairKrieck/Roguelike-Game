@@ -25,12 +25,15 @@ namespace Roguelike_Game
         {
             // Init all variables on new object creation
             maxHp = hp = startingHp;
+
             xp = 0;
             level = 0;
-            attacks[0] = new Slash();
-            attacks[1] = new Heal();
-            attacks[2] = null;
-            attacks[3] = null;
+
+            attacks[0] = new Bash();
+            attacks[1] = new Slash();
+            attacks[2] = new PlayerHeal();
+            attacks[3] = new Placeholder();
+
             sprite = Properties.Resources.stolenPlayer;
         }
 
@@ -48,16 +51,16 @@ namespace Roguelike_Game
 
                 foreach (Attack a in attacks)
                 {
-                    if (a is Heal)
+                    if (a is PlayerHeal)
                     {
-                        Heal h = (Heal)a;
+                        PlayerHeal h = (PlayerHeal)a;
                         h.UpdateHealing();
                     }
                 }
 
                 if (level == 2)
                 {
-                    attacks[2] = new BigBash();
+                    attacks[3] = new BigBash();
                 }
             }
         }

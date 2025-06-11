@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Roguelike_Game
 {
-    public class Bash : Attack
+    public class Placeholder : Attack
     {
-        public Bash()
+        public Placeholder()
         {
-            pp = ppMax = 999;
-            damage = 1;
-            name = "Bash";
+            pp = ppMax = 0;
+            damage = 0;
+            name = "Empty";
         }
     }
 }

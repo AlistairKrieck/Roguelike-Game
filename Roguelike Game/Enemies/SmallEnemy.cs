@@ -13,19 +13,20 @@ namespace Roguelike_Game
         {
             // Range of health the enemy can start with
             minHealthRange = 5;
-            maxHealthRange = 10;
+            maxHealthRange = 7;
 
             // Range of xp the player will recieve for defeating the enemy
-            minXpRange = 3;
-            maxXpRange = 5;
+            minXpRange = 1;
+            maxXpRange = 2;
 
             GenerateEnemy();
 
             sprite = Properties.Resources.stolenEnemy;
 
             // Temp
-            attacks = new Attack[1];
+            attacks = new Attack[2];
             attacks[0] = new Bash();
+            attacks[1] = new EnemyHeal();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Roguelike_Game
         public int minXpRange;
         public int maxXpRange;
 
-        public int maxHealth, health;
+        public int maxHp, hp;
         public int xpReward;
 
         public Attack[] attacks;
@@ -30,7 +30,7 @@ namespace Roguelike_Game
             Random random = new Random();
 
             // Generate random values within ranges for hp and xp rewards
-            maxHealth = health = random.Next(minHealthRange, maxHealthRange + 1);
+            maxHp = hp = random.Next(minHealthRange, maxHealthRange + 1);
             xpReward = random.Next(minXpRange, maxXpRange + 1);
         }
 
