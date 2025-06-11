@@ -27,6 +27,9 @@ namespace Roguelike_Game
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            // Reset the player
+            Form1.player = new Player();
+
             // Reset and randomize the map
             Form1.map.CreateMap(new MapScreen());
             Form1.map.floor = 1;

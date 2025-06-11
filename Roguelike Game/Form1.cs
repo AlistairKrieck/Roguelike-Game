@@ -13,7 +13,7 @@ namespace Roguelike_Game
     public partial class Form1 : Form
     {
         public static Map map = new Map();
-        public static Player player = new Player();
+        public static Player player;
 
         public Form1()
         {

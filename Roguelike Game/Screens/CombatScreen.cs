@@ -149,6 +149,9 @@ namespace Roguelike_Game
                 return;
             }
 
+            // Reduce used attacks power points by 1
+            a.pp--;
+
             if (enemy.hp - a.damage > 0)
             {
                 enemy.hp -= a.damage;
@@ -194,9 +197,6 @@ namespace Roguelike_Game
                     Form1.player.hp = Form1.player.maxHp;
                 }
             }
-
-            // Reduce used attacks power points by 1
-            a.pp--;
 
             playerTurn = false;
         }
