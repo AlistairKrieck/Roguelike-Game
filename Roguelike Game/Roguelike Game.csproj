@@ -53,6 +53,7 @@
     <Compile Include="Attacks\Slash.cs" />
     <Compile Include="Attacks\PlayerHeal.cs" />
     <Compile Include="Attacks\Bash.cs" />
+    <Compile Include="Enemies\BossEnemy.cs" />
     <Compile Include="Enemies\SmallEnemy.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Map\Map.cs" />

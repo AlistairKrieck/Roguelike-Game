@@ -28,18 +28,19 @@ namespace Roguelike_Game
             {
                 if (n.passed == false)
                 {
-                    e.Graphics.DrawEllipse(p, n.x, n.y, n.diameter, n.diameter);
+                    e.Graphics.DrawEllipse(p, n.x, n.y, n.height, n.width);
                 }
 
                 else
                 {
-                    e.Graphics.FillEllipse(sb, n.x, n.y, n.diameter, n.diameter);
+                    e.Graphics.FillEllipse(sb, n.x, n.y, n.height, n.width);
                 }
-            }
 
-            hpLabel.Text = $"HP: {Form1.player.hp} / {Form1.player.maxHp}";
-            levelLabel.Text = $"LVL: {Form1.player.level}";
-            xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
+
+                hpLabel.Text = $"HP: {Form1.player.hp} / {Form1.player.maxHp}";
+                levelLabel.Text = $"LVL: {Form1.player.level}";
+                xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -57,7 +58,7 @@ namespace Roguelike_Game
             int mouseY = mousePos.Y;
 
             // Find if the mouse was in the range of any nodes
-            MapNode node = Array.Find(Form1.map.nodes, n => mouseX >= n.x && mouseY >= n.y && mouseX <= n.x + n.diameter && mouseY <= n.y + n.diameter);
+            MapNode node = Array.Find(Form1.map.nodes, n => mouseX >= n.x && mouseY >= n.y && mouseX <= n.x + n.width && mouseY <= n.y + n.height);
 
             // If a node was clicked, run the OnClick method
             if (node != null)

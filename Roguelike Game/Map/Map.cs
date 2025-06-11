@@ -37,24 +37,24 @@ namespace Roguelike_Game
             nodes = new MapNode[1 + row1Count + row2Count + row3Count + 1];
 
             // Create starting node where the player will begin
-            nodes[0] = new MapNode(0, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, nodeSize, "start");
+            nodes[0] = new MapNode(0, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, "start");
             nodes[0].passed = true;
 
             // First row
-            nodes[1] = new MapNode(1, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[2] = new MapNode(1, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[1] = new MapNode(1, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, GetRandNodeType());
+            nodes[2] = new MapNode(1, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 6 / 8 - nodeSize / 2, GetRandNodeType());
 
             // Second row
-            nodes[3] = new MapNode(2, UC.Width * 1 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[4] = new MapNode(2, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[5] = new MapNode(2, UC.Width * 7 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[3] = new MapNode(2, UC.Width * 1 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, GetRandNodeType());
+            nodes[4] = new MapNode(2, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, GetRandNodeType());
+            nodes[5] = new MapNode(2, UC.Width * 7 / 8 - nodeSize / 2, UC.Height * 5 / 8 - nodeSize / 2, GetRandNodeType());
 
             // Third row
-            nodes[6] = new MapNode(3, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
-            nodes[7] = new MapNode(3, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[6] = new MapNode(3, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, GetRandNodeType());
+            nodes[7] = new MapNode(3, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, GetRandNodeType());
 
             // Boss Room
-            nodes[8] = new MapNode(4, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 2 / 8 - nodeSize / 2, nodeSize, GetRandNodeType());
+            nodes[8] = new BossNode(4, UC.Width * 4 / 8 - width / 2, UC.Height * 2 / 8 - height / 2);
         }
 
         public string GetRandNodeType()

@@ -12,19 +12,19 @@ namespace Roguelike_Game
         // Position
         public int x, y, row;
 
-        // TEMP until boss node is able to be implemented
-        public int diameter;
-        string nodeType;
+        public int height = 40;
+        public int width = 40;
+
+        public string nodeType;
 
         // Whether the map has been chosen or no longer has a path to get to it
         public bool passed;
 
-        public MapNode(int _row, int _x, int _y, int _diameter, string _nodeType)
+        public MapNode(int _row, int _x, int _y, string _nodeType)
         {
             row = _row;
             x = _x;
             y = _y;
-            diameter = _diameter;
             nodeType = _nodeType;
 
             passed = false;

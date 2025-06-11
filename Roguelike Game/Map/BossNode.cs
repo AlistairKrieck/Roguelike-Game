@@ -7,85 +7,15 @@ using System.Windows.Forms;
 
 namespace Roguelike_Game
 {
-    public class BossNode
+    public class BossNode : MapNode
     {
-        // Position
-        public int x, y, row;
-
-        // TEMP until boss node is able to be implemented
-        public int height, width;
-        string nodeType;
-
-        // Whether the map has been chosen or no longer has a path to get to it
-        public bool passed;
-
-        public BossNode(int _row, int _x, int _y, int _height, int _width, string _nodeType)
+        public BossNode(int _row, int _x, int _y) : base(_row, _x, _y, "boss")
         {
-            row = _row;
-            x = _x;
-            y = _y;
-            height = _height;
-            width = _width;
-            nodeType = _nodeType;
+            // Size of boss node
+            height = 60;
+            width = 120;
 
             passed = false;
-        }
-
-        // Go to relevant screen when clicked
-        public void OnClick(UserControl UC)
-        {
-            if (passed == false && MapScreen.currentRow == this.row)
-            {
-                // Move up one row
-                MapScreen.currentRow++;
-
-                switch (nodeType)
-                {
-                    case "combat":
-                        // Create a new enemy and send it to the combat screen
-                        CombatScreen.enemy = GenEnemyNode();
-
-                        // Go to the combat screen
-                        Form1.ChangeScreen(UC, new CombatScreen());
-                        break;
-
-                    case "loot":
-                        Form1.ChangeScreen(UC, new LootScreen());
-                        break;
-                }
-            }
-        }
-
-
-        private void PassNodes()
-        {
-            foreach (MapNode n in Form1.map.nodes)
-            {
-                if (n.row <= this.row)
-                {
-                    n.passed = true;
-                }
-            }
-        }
-
-
-        private Enemy GenEnemyNode()
-        {
-            Enemy e = new Enemy();
-
-            if (Form1.map.floor == 1)
-            {
-                e = new SmallEnemy();
-            }
-            // else do other types of enemy
-
-            // TEMP
-            else
-            {
-                e = new SmallEnemy();
-            }
-
-            return e;
         }
     }
 }
