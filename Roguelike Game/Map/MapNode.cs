@@ -33,7 +33,8 @@ namespace Roguelike_Game
         // Go to relevant screen when clicked
         public void OnClick(UserControl UC)
         {
-            if (passed == false && MapScreen.currentRow == this.row)
+            // Only allow the player to click a node if they have just cleared the previous row
+            if (MapScreen.currentRow == this.row - 1)
             {
                 // Move up one row
                 MapScreen.currentRow++;
@@ -41,6 +42,7 @@ namespace Roguelike_Game
                 switch (nodeType)
                 {
                     case "combat":
+                    case "boss":
                         // Create a new enemy and send it to the combat screen
                         CombatScreen.enemy = GenEnemyNode();
 
@@ -74,10 +76,16 @@ namespace Roguelike_Game
         {
             Enemy e = new Enemy();
 
-            if (Form1.map.floor == 1)
+            if (nodeType == "boss")
+            {
+                e = new BossEnemy();
+            }
+
+            else if (Form1.map.floor == 1)
             {
                 e = new SmallEnemy();
             }
+
             // else do other types of enemy
 
             // TEMP

@@ -16,8 +16,8 @@ namespace Roguelike_Game
             maxHealthRange = 7;
 
             // Range of xp the player will recieve for defeating the enemy
-            minXpRange = 1;
-            maxXpRange = 2;
+            minXpRange = 2;
+            maxXpRange = 4;
 
             GenerateEnemy();
 

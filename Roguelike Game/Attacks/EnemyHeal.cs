@@ -12,17 +12,18 @@ namespace Roguelike_Game
 
         public EnemyHeal()
         {
-            // Default to 1
-            healing = 1;
+            int floor = Form1.map.floor;
 
-            damage = 1;
+            // Increase power points by the floor
+            pp = ppMax = 3 * floor;
+
+            // Increase healing amount by the floor
+            healing = floor;
+
+            // Increase damage by the floor
+            damage = floor;
+
             name = "Heal";
-        }
-
-        // Increase healing amount by the floor
-        public void UpdateHealing()
-        {
-            healing = Form1.map.floor + 1;
         }
     }
 }

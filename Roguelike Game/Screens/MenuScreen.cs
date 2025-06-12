@@ -34,6 +34,8 @@ namespace Roguelike_Game
             Form1.map.CreateMap(new MapScreen());
             Form1.map.floor = 1;
 
+            MapScreen.currentRow = 0;
+
             // Go to the map screen
             Form1.ChangeScreen(this, new MapScreen());
         }

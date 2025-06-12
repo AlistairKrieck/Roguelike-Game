@@ -11,7 +11,8 @@ namespace Roguelike_Game
     {
         private int startingHp = 10;
         private int maxLevel = 5;
-        private int levelUpHpReward = 2;
+        private int levelUpHpReward = 3;
+        private int levelUpPpReward = 2;
 
         public int maxHp, hp, xp, level;
 
@@ -39,6 +40,7 @@ namespace Roguelike_Game
 
         public void CheckLevelUp()
         {
+            // If player has required xp to level up
             if (xp >= xpToNextLevel[level] && level < maxLevel)
             {
                 // Increase level and reset experience
@@ -51,6 +53,17 @@ namespace Roguelike_Game
 
                 foreach (Attack a in attacks)
                 {
+                    // If the attack is not bash, increase its power points
+                    if (a is Bash)
+                    {
+
+                    }
+                    else
+                    {
+                        a.ppMax += levelUpPpReward;
+                        a.pp = a.ppMax;
+                    }
+
                     if (a is PlayerHeal)
                     {
                         PlayerHeal h = (PlayerHeal)a;

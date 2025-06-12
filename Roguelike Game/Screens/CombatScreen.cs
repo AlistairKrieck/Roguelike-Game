@@ -31,8 +31,6 @@ namespace Roguelike_Game
         public CombatScreen()
         {
             InitializeComponent();
-
-            enemy = new SmallEnemy();
         }
 
         // Initilaze position of all components

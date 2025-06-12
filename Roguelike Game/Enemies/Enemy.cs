@@ -45,6 +45,14 @@ namespace Roguelike_Game
 
             int atk = random.Next(0, attacks.Length);
 
+            while (attacks[atk].pp <= 0)
+            {
+                atk = random.Next(0, attacks.Length); ;
+            }
+
+            // Reduce used attacks power points by 1
+            attacks[atk].pp--;
+
             return attacks[atk];
         }
     }

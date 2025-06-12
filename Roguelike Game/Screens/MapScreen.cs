@@ -12,7 +12,7 @@ namespace Roguelike_Game
 {
     public partial class MapScreen : UserControl
     {
-        public static int currentRow = 1;
+        public static int currentRow = 0;
 
         public MapScreen()
         {
@@ -28,12 +28,12 @@ namespace Roguelike_Game
             {
                 if (n.passed == false)
                 {
-                    e.Graphics.DrawEllipse(p, n.x, n.y, n.height, n.width);
+                    e.Graphics.DrawEllipse(p, n.x, n.y, n.width, n.height);
                 }
 
                 else
                 {
-                    e.Graphics.FillEllipse(sb, n.x, n.y, n.height, n.width);
+                    e.Graphics.FillEllipse(sb, n.x, n.y, n.width, n.height);
                 }
 
 

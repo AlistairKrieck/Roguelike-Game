@@ -12,21 +12,23 @@ namespace Roguelike_Game
         public BossEnemy()
         {
             // Range of health the enemy can start with
-            minHealthRange = 5;
-            maxHealthRange = 7;
+            // Multiply it by the floor to double health on floor two, etc.
+            minHealthRange = 25 * Form1.map.floor;
+            maxHealthRange = 30 * Form1.map.floor;
 
             // Range of xp the player will recieve for defeating the enemy
-            minXpRange = 1;
-            maxXpRange = 2;
+            // Multiply it by the floor to double xp on floor two, etc.
+            minXpRange = 15 * Form1.map.floor;
+            maxXpRange = 20 * Form1.map.floor;
 
             GenerateEnemy();
 
             sprite = Properties.Resources.stolenEnemy;
 
-            // Temp
-            attacks = new Attack[2];
+            attacks = new Attack[3];
             attacks[0] = new Bash();
             attacks[1] = new EnemyHeal();
+            attacks[2] = new BigBash();
         }
     }
 }
