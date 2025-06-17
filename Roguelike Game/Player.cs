@@ -43,9 +43,10 @@ namespace Roguelike_Game
             // If player has required xp to level up
             if (xp >= xpToNextLevel[level] && level < maxLevel)
             {
-                // Increase level and reset experience
+                // Increase level and reset experience, carrying overflow to next level
+                xp -= xpToNextLevel[level];
                 level++;
-                xp = 0;
+
 
                 // Fully heal and increase max health
                 maxHp += levelUpHpReward;
@@ -53,8 +54,8 @@ namespace Roguelike_Game
 
                 foreach (Attack a in attacks)
                 {
-                    // If the attack is not bash, increase its power points
-                    if (a is Bash)
+                    // If the attack is not bash or a placeholder, increase its power points
+                    if (a is Bash || a is Placeholder)
                     {
 
                     }
@@ -71,10 +72,12 @@ namespace Roguelike_Game
                     }
                 }
 
-                if (level == 2)
-                {
-                    attacks[3] = new BigBash();
-                }
+
+            }
+
+            if (level == 2 && attacks[3] is Placeholder)
+            {
+                attacks[3] = new BigBash();
             }
         }
     }

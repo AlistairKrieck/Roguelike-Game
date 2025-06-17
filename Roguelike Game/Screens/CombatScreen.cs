@@ -17,6 +17,9 @@ namespace Roguelike_Game
         // Map connections
         // Floors
         // Attack & enemy variety
+        // Esc to close at any time
+        // Fix wacky drawing problem with the past moves display
+
         /*
          * Use an array of enemies that can appear on a specific floor (?)
         */
@@ -27,6 +30,8 @@ namespace Roguelike_Game
         SolidBrush redBrush = new SolidBrush(Color.Red);
 
         bool playerTurn = true;
+
+        int turnCount = 0;
 
         public CombatScreen()
         {
@@ -46,10 +51,12 @@ namespace Roguelike_Game
             backButton.Location = new Point((this.Width * 1 / 9) - (backButton.Width / 2), this.Height - 75 - backButton.Height);
 
             enemyHealthLabel.Width = enemy.sprite.Width;
-            enemyHealthLabel.Location = new Point(this.Width * 4 / 5 - enemy.sprite.Width / 2, 25 + 2 * enemy.sprite.Height);
+            enemyHealthLabel.Location = new Point(this.Width * 3 / 5 - enemy.sprite.Width / 2, 25 + 2 * enemy.sprite.Height);
 
             playerHealthLabel.Width = Form1.player.sprite.Width;
             playerHealthLabel.Location = new Point(this.Width * 1 / 5 - Form1.player.sprite.Width / 2, 115 + 2 * Form1.player.sprite.Height);
+
+            pastMovesLabel.Location = new Point(this.Width - 125 - (pastMovesLabel.Width / 2), 100);
 
             // Hide the second set of buttons to start
             attackButton1.Visible = false;
@@ -92,14 +99,14 @@ namespace Roguelike_Game
 
         private void CombatScreen_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(whiteBrush, (this.Width - 1100) / 2, 50, 1100, 500);
+            e.Graphics.FillRectangle(whiteBrush, (this.Width - 900) / 2 - 100, 50, 900, 500);
 
             Image spr = enemy.sprite;
-            e.Graphics.DrawImage(spr, this.Width * 4 / 5 - spr.Width / 2, 50 + spr.Height);
+            e.Graphics.DrawImage(spr, this.Width * 3 / 5 - spr.Width / 2, 50 + spr.Height);
 
             // Display the enemy health
-            e.Graphics.FillRectangle(redBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
-            e.Graphics.FillRectangle(greenBrush, this.Width * 4 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width * enemy.hp / enemy.maxHp, 25);
+            e.Graphics.FillRectangle(redBrush, this.Width * 3 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width, 25);
+            e.Graphics.FillRectangle(greenBrush, this.Width * 3 / 5 - spr.Width / 2, 25 + 2 * spr.Height, spr.Width * enemy.hp / enemy.maxHp, 25);
             enemyHealthLabel.Text = $"{enemy.hp} / {enemy.maxHp}";
 
             // Draw the player
@@ -128,7 +135,11 @@ namespace Roguelike_Game
 
                 EnemyAttack();
 
-                playerTurn = true;
+                // Increment the turn by 1 whenever the enemy uses their attack
+                turnCount++;
+
+                // Add a line break between each turn
+                pastMovesLabel.Items.Add("", 0);
             }
 
 
@@ -174,9 +185,7 @@ namespace Roguelike_Game
 
                 enemy.OnDeath();
 
-                Form1.player.CheckLevelUp();
-
-                Form1.ChangeScreen(this, new MapScreen());
+                Form1.ChangeScreen(this, new LootScreen());
             }
 
             // Heal player when using the "Heal" attack
@@ -195,6 +204,8 @@ namespace Roguelike_Game
                     Form1.player.hp = Form1.player.maxHp;
                 }
             }
+
+            pastMovesLabel.Items.Add(GetTurn(a));
 
             playerTurn = false;
         }
@@ -226,6 +237,27 @@ namespace Roguelike_Game
                     enemy.hp = enemy.maxHp;
                 }
             }
+
+            pastMovesLabel.Items.Add(GetTurn(a));
+
+            playerTurn = true;
+        }
+
+        private ListViewItem GetTurn(Attack atk)
+        {
+            ListViewItem turn;
+
+            if (playerTurn)
+            {
+                turn = new ListViewItem($"Turn {turnCount}: You used {atk.name} for {atk.damage} dmg!", 0);
+            }
+
+            else
+            {
+                turn = new ListViewItem($"Turn {turnCount}: Enemy used {atk.name} for {atk.damage} dmg!", 0);
+            }
+
+            return turn;
         }
     }
 }

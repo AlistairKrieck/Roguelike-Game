@@ -39,12 +39,14 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.enemyHealthLabel = new System.Windows.Forms.Label();
             this.playerHealthLabel = new System.Windows.Forms.Label();
+            this.pastMovesLabel = new System.Windows.Forms.ListView();
+            this.moveCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // inventoryButton
             // 
             this.inventoryButton.Location = new System.Drawing.Point(355, 700);
-            this.inventoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inventoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.inventoryButton.Name = "inventoryButton";
             this.inventoryButton.Size = new System.Drawing.Size(820, 108);
             this.inventoryButton.TabIndex = 0;
@@ -54,7 +56,7 @@
             // attackMenuButton
             // 
             this.attackMenuButton.Location = new System.Drawing.Point(355, 560);
-            this.attackMenuButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.attackMenuButton.Margin = new System.Windows.Forms.Padding(4);
             this.attackMenuButton.Name = "attackMenuButton";
             this.attackMenuButton.Size = new System.Drawing.Size(820, 108);
             this.attackMenuButton.TabIndex = 1;
@@ -65,7 +67,7 @@
             // attackButton1
             // 
             this.attackButton1.Location = new System.Drawing.Point(96, 316);
-            this.attackButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.attackButton1.Margin = new System.Windows.Forms.Padding(4);
             this.attackButton1.Name = "attackButton1";
             this.attackButton1.Size = new System.Drawing.Size(475, 108);
             this.attackButton1.TabIndex = 2;
@@ -76,7 +78,7 @@
             // attackButton2
             // 
             this.attackButton2.Location = new System.Drawing.Point(579, 316);
-            this.attackButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.attackButton2.Margin = new System.Windows.Forms.Padding(4);
             this.attackButton2.Name = "attackButton2";
             this.attackButton2.Size = new System.Drawing.Size(475, 108);
             this.attackButton2.TabIndex = 3;
@@ -87,7 +89,7 @@
             // attackButton4
             // 
             this.attackButton4.Location = new System.Drawing.Point(579, 432);
-            this.attackButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.attackButton4.Margin = new System.Windows.Forms.Padding(4);
             this.attackButton4.Name = "attackButton4";
             this.attackButton4.Size = new System.Drawing.Size(475, 108);
             this.attackButton4.TabIndex = 4;
@@ -98,7 +100,7 @@
             // attackButton3
             // 
             this.attackButton3.Location = new System.Drawing.Point(96, 432);
-            this.attackButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.attackButton3.Margin = new System.Windows.Forms.Padding(4);
             this.attackButton3.Name = "attackButton3";
             this.attackButton3.Size = new System.Drawing.Size(475, 108);
             this.attackButton3.TabIndex = 5;
@@ -109,7 +111,7 @@
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(1062, 376);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(129, 108);
             this.backButton.TabIndex = 6;
@@ -145,11 +147,31 @@
             this.playerHealthLabel.Text = "number";
             this.playerHealthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pastMovesLabel
+            // 
+            this.pastMovesLabel.AutoArrange = false;
+            this.pastMovesLabel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.moveCol});
+            this.pastMovesLabel.ForeColor = System.Drawing.Color.Black;
+            this.pastMovesLabel.HideSelection = false;
+            this.pastMovesLabel.Location = new System.Drawing.Point(134, 45);
+            this.pastMovesLabel.Name = "pastMovesLabel";
+            this.pastMovesLabel.Size = new System.Drawing.Size(291, 533);
+            this.pastMovesLabel.TabIndex = 9;
+            this.pastMovesLabel.UseCompatibleStateImageBehavior = false;
+            this.pastMovesLabel.View = System.Windows.Forms.View.Details;
+            // 
+            // moveCol
+            // 
+            this.moveCol.Text = "The Combat So Far...";
+            this.moveCol.Width = 291;
+            // 
             // CombatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.Controls.Add(this.pastMovesLabel);
             this.Controls.Add(this.playerHealthLabel);
             this.Controls.Add(this.enemyHealthLabel);
             this.Controls.Add(this.backButton);
@@ -160,7 +182,7 @@
             this.Controls.Add(this.attackMenuButton);
             this.Controls.Add(this.inventoryButton);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CombatScreen";
             this.Size = new System.Drawing.Size(1600, 985);
             this.Load += new System.EventHandler(this.CombatScreen_Load);
@@ -181,5 +203,7 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label enemyHealthLabel;
         private System.Windows.Forms.Label playerHealthLabel;
+        private System.Windows.Forms.ListView pastMovesLabel;
+        private System.Windows.Forms.ColumnHeader moveCol;
     }
 }

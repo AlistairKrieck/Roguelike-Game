@@ -36,7 +36,7 @@ namespace Roguelike_Game
 
         public void OnDeath()
         {
-            Form1.player.xp += xpReward;
+            //Form1.player.xp += xpReward;
         }
 
         public Attack Attack()
