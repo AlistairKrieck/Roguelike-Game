@@ -23,7 +23,7 @@ namespace Roguelike_Game
 
             GenerateEnemy();
 
-            sprite = Properties.Resources.stolenEnemy;
+            sprite = Properties.Resources.stolenRobotEnemy;
 
             attacks = new Attack[3];
             attacks[0] = new Bash();

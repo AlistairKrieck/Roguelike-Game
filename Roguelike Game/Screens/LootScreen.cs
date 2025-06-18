@@ -28,7 +28,7 @@ namespace Roguelike_Game
         {
             lootButton.Location = new Point((this.Width - lootButton.Width) / 2, this.Height - 25 - lootButton.Height);
 
-            xpRewardLabel.Location = new Point((this.Width - xpRewardLabel.Width) / 2, (this.Height * 1/5) - (xpRewardLabel.Height / 2));
+            xpRewardLabel.Location = new Point((this.Width - xpRewardLabel.Width) / 2, (this.Height * 1 / 5) - (xpRewardLabel.Height / 2));
         }
 
 
@@ -48,21 +48,20 @@ namespace Roguelike_Game
                 xpRewardLabel.Text += $"\n+2 PP to All Attacks!";
                 xpRewardLabel.Text += $"\nYou Fully Healed!";
             }
-
         }
 
 
         private void LootScreen_Paint(object sender, PaintEventArgs e)
         {
-            SolidBrush whiteBrush = new SolidBrush(Color.White);
-
-            e.Graphics.FillRectangle(whiteBrush, (this.Width - 1100) / 2, 50, 1100, 500);
+            e.Graphics.FillRectangle(new SolidBrush(Color.White), (this.Width - 1100) / 2, 50, 1100, 500);
         }
 
         private void lootButton_Click(object sender, EventArgs e)
         {
+            // Give the player their xp
             Form1.player.xp += xpReward;
 
+            // Level up the player if xp meets requirement
             Form1.player.CheckLevelUp();
 
             Form1.ChangeScreen(this, new MapScreen());

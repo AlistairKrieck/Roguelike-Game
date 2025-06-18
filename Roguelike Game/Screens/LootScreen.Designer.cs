@@ -34,12 +34,11 @@
             // 
             // lootButton
             // 
-            this.lootButton.Location = new System.Drawing.Point(350, 309);
-            this.lootButton.Margin = new System.Windows.Forms.Padding(4);
+            this.lootButton.Location = new System.Drawing.Point(262, 251);
             this.lootButton.Name = "lootButton";
-            this.lootButton.Size = new System.Drawing.Size(475, 108);
+            this.lootButton.Size = new System.Drawing.Size(356, 88);
             this.lootButton.TabIndex = 4;
-            this.lootButton.Text = "Get Loot!";
+            this.lootButton.Text = "Get Reward!";
             this.lootButton.UseVisualStyleBackColor = true;
             this.lootButton.Click += new System.EventHandler(this.lootButton_Click);
             // 
@@ -47,24 +46,24 @@
             // 
             this.xpRewardLabel.BackColor = System.Drawing.Color.White;
             this.xpRewardLabel.Font = new System.Drawing.Font("Lucida Fax", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xpRewardLabel.Location = new System.Drawing.Point(350, 98);
+            this.xpRewardLabel.Location = new System.Drawing.Point(262, 80);
+            this.xpRewardLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.xpRewardLabel.Name = "xpRewardLabel";
-            this.xpRewardLabel.Size = new System.Drawing.Size(422, 279);
+            this.xpRewardLabel.Size = new System.Drawing.Size(316, 227);
             this.xpRewardLabel.TabIndex = 5;
             this.xpRewardLabel.Text = "label1";
             this.xpRewardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LootScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.Controls.Add(this.xpRewardLabel);
             this.Controls.Add(this.lootButton);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LootScreen";
-            this.Size = new System.Drawing.Size(1600, 985);
+            this.Size = new System.Drawing.Size(1200, 800);
             this.Load += new System.EventHandler(this.LootScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.LootScreen_Paint);
             this.ResumeLayout(false);

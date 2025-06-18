@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Roguelike_Game
 {
-    public class SmallEnemy : Enemy
+    public class SmallRobotEnemy : Enemy
     {
-        public SmallEnemy()
+        public SmallRobotEnemy()
         {
             // Range of health the enemy can start with
             minHealthRange = 5;
@@ -21,7 +21,7 @@ namespace Roguelike_Game
 
             GenerateEnemy();
 
-            sprite = Properties.Resources.stolenEnemy;
+            sprite = Properties.Resources.stolenRobotEnemy;
 
             // Temp
             attacks = new Attack[2];

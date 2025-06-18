@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.hpLabel = new System.Windows.Forms.Label();
             this.levelLabel = new System.Windows.Forms.Label();
             this.xpLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // gameTimer
-            // 
-            this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 20;
-            this.gameTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // hpLabel
             // 
@@ -92,8 +84,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label hpLabel;
         private System.Windows.Forms.Label levelLabel;
         private System.Windows.Forms.Label xpLabel;

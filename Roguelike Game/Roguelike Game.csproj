@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attacks\Attack.cs" />
+    <Compile Include="Attacks\Claw.cs" />
     <Compile Include="Attacks\Placeholder.cs" />
     <Compile Include="Attacks\BigBash.cs" />
     <Compile Include="Attacks\EnemyHeal.cs" />
@@ -54,11 +55,18 @@
     <Compile Include="Attacks\PlayerHeal.cs" />
     <Compile Include="Attacks\Bash.cs" />
     <Compile Include="Enemies\BossEnemy.cs" />
-    <Compile Include="Enemies\SmallEnemy.cs" />
+    <Compile Include="Enemies\SmallRobotEnemy.cs" />
+    <Compile Include="Enemies\SmallBeastEnemy.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\BossNode.cs" />
     <Compile Include="Map\MapNode.cs" />
+    <Compile Include="Screens\GameOverScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\GameOverScreen.Designer.cs">
+      <DependentUpon>GameOverScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,12 +79,6 @@
     </Compile>
     <Compile Include="Screens\InventoryScreen.Designer.cs">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\EndScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Screens\EndScreen.Designer.cs">
-      <DependentUpon>EndScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\LootScreen.cs">
       <SubType>UserControl</SubType>
@@ -104,14 +106,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Screens\GameOverScreen.resx">
+      <DependentUpon>GameOverScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\InventoryScreen.resx">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\EndScreen.resx">
-      <DependentUpon>EndScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\LootScreen.resx">
       <DependentUpon>LootScreen.cs</DependentUpon>
@@ -153,6 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stolenPlayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stolenIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stolenWolfEnemy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

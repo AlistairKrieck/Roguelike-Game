@@ -9,20 +9,25 @@ namespace Roguelike_Game
 {
     public class MapNode
     {
+        public static Random random = new Random();
         // Position
-        public int x, y, row;
+        public int x, y, row, column;
 
         public int height = 40;
         public int width = 40;
 
         public string nodeType;
 
-        // Whether the map has been chosen or no longer has a path to get to it
+        // Whether the node no longer has a path to get to it
         public bool passed;
 
-        public MapNode(int _row, int _x, int _y, string _nodeType)
+        // Whether the node has been chosen
+        public bool cleared;
+
+        public MapNode(int _row, int _column, int _x, int _y, string _nodeType)
         {
             row = _row;
+            column = _column;
             x = _x;
             y = _y;
             nodeType = _nodeType;
@@ -34,10 +39,16 @@ namespace Roguelike_Game
         public void OnClick(UserControl UC)
         {
             // Only allow the player to click a node if they have just cleared the previous row
-            if (MapScreen.currentRow == this.row - 1)
+            // and are on a node left, right, or below the current column, or clicked the boss node
+            if (MapScreen.currentRow == this.row - 1 && (MapScreen.currentColumn >= this.column - 1 && MapScreen.currentColumn <= this.column + 1 || this.nodeType == "boss"))
             {
+                this.cleared = true;
+
                 // Move up one row
                 MapScreen.currentRow++;
+
+                // Move to the column of the clicked node
+                MapScreen.currentColumn = this.column;
 
                 switch (nodeType)
                 {
@@ -81,17 +92,28 @@ namespace Roguelike_Game
                 e = new BossEnemy();
             }
 
+            // Chose a random floor one enemy
             else if (Form1.map.floor == 1)
             {
-                e = new SmallEnemy();
+                switch (random.Next(0, 2))
+                {
+                    case 0:
+                        e = new SmallRobotEnemy();
+                        break;
+
+                    case 1:
+                        e = new SmallBeastEnemy();
+                        break;
+                }
+
             }
 
-            // else do other types of enemy
+            // else do other types of enemy for other floors
 
-            // TEMP
+            // If something goes wrong, default to a floor 1 bot enemy
             else
             {
-                e = new SmallEnemy();
+                e = new SmallRobotEnemy();
             }
 
             return e;

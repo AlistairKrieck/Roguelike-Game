@@ -13,12 +13,19 @@ namespace Roguelike_Game
     public partial class CombatScreen : UserControl
     {
         //TODO
-        // Boss
-        // Map connections
+        // Display map node connections
         // Floors
         // Attack & enemy variety
         // Esc to close at any time
         // Fix wacky drawing problem with the past moves display
+        // Animations for attacks, winning or losing a fight
+        // Hotkeys for actions
+        // Stat tracking
+        // Items
+        // Loot rooms
+        // Condence and optimize code
+        // Comments
+        // Prevent player from spamming buttons when its not their turn
 
         /*
          * Use an array of enemies that can appear on a specific floor (?)
@@ -128,6 +135,12 @@ namespace Roguelike_Game
         {
             if (playerTurn == false)
             {
+                // Disable attack buttons to prevent their use during the enemy turn
+                attackButton1.Enabled = false;
+                attackButton2.Enabled = false;
+                attackButton3.Enabled = false;
+                attackButton4.Enabled = false;
+
                 Refresh();
 
                 //Temp wait to make the game less instant
@@ -140,8 +153,13 @@ namespace Roguelike_Game
 
                 // Add a line break between each turn
                 pastMovesLabel.Items.Add("", 0);
-            }
 
+                // Re-enable the attack buttons
+                attackButton1.Enabled = true;
+                attackButton2.Enabled = true;
+                attackButton3.Enabled = true;
+                attackButton4.Enabled = true;
+            }
 
             Refresh();
         }
@@ -161,6 +179,7 @@ namespace Roguelike_Game
             // Reduce used attacks power points by 1
             a.pp--;
 
+            // Reduce enemy health
             if (enemy.hp - a.damage > 0)
             {
                 enemy.hp -= a.damage;
@@ -171,21 +190,26 @@ namespace Roguelike_Game
             {
                 gameTimer.Stop();
 
+                enemy.hp -= a.damage;
+
+                Refresh();
+                Thread.Sleep(500);
+
                 // Reset power points for all player attacks on enemy kill
                 foreach (Attack atk in Form1.player.attacks)
                 {
                     atk.pp = atk.ppMax;
                 }
 
-                enemy.hp -= a.damage;
+                if (enemy is BossEnemy)
+                {
+                    Form1.ChangeScreen(this, new WinScreen());
+                }
+                else
+                {
+                    Form1.ChangeScreen(this, new LootScreen());
+                }
 
-                Refresh();
-                Thread.Sleep(500);
-
-
-                enemy.OnDeath();
-
-                Form1.ChangeScreen(this, new LootScreen());
             }
 
             // Heal player when using the "Heal" attack
@@ -205,7 +229,7 @@ namespace Roguelike_Game
                 }
             }
 
-            pastMovesLabel.Items.Add(GetTurn(a));
+            pastMovesLabel.Items.Add(GetTurnInfo(a));
 
             playerTurn = false;
         }
@@ -214,36 +238,45 @@ namespace Roguelike_Game
         {
             Attack a = enemy.Attack();
 
+            // Reduce player health
             if (Form1.player.hp - a.damage > 0)
             {
                 Form1.player.hp -= a.damage;
             }
 
+            // If the player dies, go to the game over screen (name didn't update when I changed it :/)
             else if (Form1.player.hp - a.damage <= 0)
             {
-                Form1.ChangeScreen(this, new EndScreen());
+                Form1.player.hp -= a.damage;
+                Form1.ChangeScreen(this, new WinScreen());
             }
 
+            // Increase enemy health if they use a heal
             if (a is EnemyHeal)
             {
                 EnemyHeal h = (EnemyHeal)a;
 
+                // Increase enemy health by healing amount
                 if (enemy.hp + h.healing <= enemy.maxHp)
                 {
                     enemy.hp += h.healing;
                 }
+
+                // If healing amount would push max hp above 1, just set hp to max
                 else
                 {
                     enemy.hp = enemy.maxHp;
                 }
             }
 
-            pastMovesLabel.Items.Add(GetTurn(a));
+            // Add what the enemy did to the past turns display
+            pastMovesLabel.Items.Add(GetTurnInfo(a));
 
             playerTurn = true;
         }
 
-        private ListViewItem GetTurn(Attack atk)
+        // Returns a new list view item storing what happened on the current turn
+        private ListViewItem GetTurnInfo(Attack atk)
         {
             ListViewItem turn;
 

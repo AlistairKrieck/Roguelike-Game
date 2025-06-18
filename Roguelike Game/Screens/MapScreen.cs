@@ -13,10 +13,13 @@ namespace Roguelike_Game
     public partial class MapScreen : UserControl
     {
         public static int currentRow = 0;
+        public static int currentColumn = 3;
 
         public MapScreen()
         {
             InitializeComponent();
+
+            Refresh();
         }
 
         private void MapScreen_Paint(object sender, PaintEventArgs e)
@@ -26,7 +29,7 @@ namespace Roguelike_Game
 
             foreach (var n in Form1.map.nodes)
             {
-                if (n.passed == false)
+                if (n.cleared == false)
                 {
                     e.Graphics.DrawEllipse(p, n.x, n.y, n.width, n.height);
                 }
@@ -41,11 +44,6 @@ namespace Roguelike_Game
                 levelLabel.Text = $"LVL: {Form1.player.level}";
                 xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
             }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Refresh();
         }
 
         private void MapScreen_Click(object sender, EventArgs e)

@@ -61,12 +61,12 @@ namespace Roguelike_Game.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Bitmap stolenEnemy {
+        internal static System.Drawing.Icon stolenIcon {
             get {
-                object obj = ResourceManager.GetObject("stolenEnemy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("stolenIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -76,6 +76,26 @@ namespace Roguelike_Game.Properties {
         internal static System.Drawing.Bitmap stolenPlayer {
             get {
                 object obj = ResourceManager.GetObject("stolenPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stolenRobotEnemy {
+            get {
+                object obj = ResourceManager.GetObject("stolenRobotEnemy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stolenWolfEnemy {
+            get {
+                object obj = ResourceManager.GetObject("stolenWolfEnemy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
