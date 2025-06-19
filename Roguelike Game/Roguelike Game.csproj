@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attacks\Attack.cs" />
+    <Compile Include="Attacks\Gnaw.cs" />
     <Compile Include="Attacks\Claw.cs" />
     <Compile Include="Attacks\Placeholder.cs" />
     <Compile Include="Attacks\BigBash.cs" />
@@ -74,12 +75,6 @@
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
-    <Compile Include="Screens\InventoryScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Screens\InventoryScreen.Designer.cs">
-      <DependentUpon>InventoryScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\LootScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,9 +106,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\InventoryScreen.resx">
-      <DependentUpon>InventoryScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\LootScreen.resx">
       <DependentUpon>LootScreen.cs</DependentUpon>
@@ -161,6 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stolenWolfEnemy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stolenBoss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mapBg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

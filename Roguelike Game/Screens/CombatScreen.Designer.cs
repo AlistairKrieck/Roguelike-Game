@@ -187,6 +187,7 @@
             this.Size = new System.Drawing.Size(1600, 985);
             this.Load += new System.EventHandler(this.CombatScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CombatScreen_Paint);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CombatScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }

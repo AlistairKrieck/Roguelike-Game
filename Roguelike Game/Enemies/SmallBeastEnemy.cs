@@ -12,12 +12,12 @@ namespace Roguelike_Game
         public SmallBeastEnemy()
         {
             // Range of health the enemy can start with
-            minHealthRange = 3;
-            maxHealthRange = 5;
+            minHealthRange = 4;
+            maxHealthRange = 6;
 
             // Range of xp the player will recieve for defeating the enemy
             minXpRange = 2;
-            maxXpRange = 4;
+            maxXpRange = 3;
 
             GenerateEnemy();
 
@@ -26,7 +26,7 @@ namespace Roguelike_Game
             // Temp
             attacks = new Attack[2];
             attacks[0] = new Claw();
-            attacks[1] = new Bash();
+            attacks[1] = new Gnaw();
         }
     }
 }

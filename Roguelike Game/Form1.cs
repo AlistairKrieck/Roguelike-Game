@@ -10,6 +10,27 @@ using System.Windows.Forms;
 
 namespace Roguelike_Game
 {
+    //TODO
+    // Floors
+    // Attack & enemy variety
+    // Fix wacky drawing problem with the past moves display
+    // Animations for attacks, winning or losing a fight
+    // Hotkeys for actions
+    // Stat tracking
+    // Items
+    // Loot rooms as options for nodes
+    // Condence and optimize code
+    // Comments
+    // Stop the connecter line in map screen from appearing in the middle of the next node
+    // Tweak difficulty to make it harder
+    // Add status effects like burn, bleed, poison, etc
+    // Get sprites that aren't stolen...
+    // Randomize map generation
+
+    /*
+     * Use an array of enemies that can appear on a specific floor (?)
+    */
+
     public partial class Form1 : Form
     {
         public static Map map = new Map();

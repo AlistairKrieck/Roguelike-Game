@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapScreen));
             this.hpLabel = new System.Windows.Forms.Label();
             this.levelLabel = new System.Windows.Forms.Label();
             this.xpLabel = new System.Windows.Forms.Label();
@@ -35,6 +36,7 @@
             // 
             // hpLabel
             // 
+            this.hpLabel.BackColor = System.Drawing.Color.Transparent;
             this.hpLabel.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hpLabel.ForeColor = System.Drawing.Color.White;
             this.hpLabel.Location = new System.Drawing.Point(502, 12);
@@ -46,6 +48,7 @@
             // 
             // levelLabel
             // 
+            this.levelLabel.BackColor = System.Drawing.Color.Transparent;
             this.levelLabel.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.levelLabel.ForeColor = System.Drawing.Color.White;
             this.levelLabel.Location = new System.Drawing.Point(502, 35);
@@ -57,6 +60,7 @@
             // 
             // xpLabel
             // 
+            this.xpLabel.BackColor = System.Drawing.Color.Transparent;
             this.xpLabel.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xpLabel.ForeColor = System.Drawing.Color.White;
             this.xpLabel.Location = new System.Drawing.Point(502, 58);
@@ -71,6 +75,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Controls.Add(this.xpLabel);
             this.Controls.Add(this.levelLabel);
             this.Controls.Add(this.hpLabel);
@@ -79,6 +84,7 @@
             this.Size = new System.Drawing.Size(700, 850);
             this.Click += new System.EventHandler(this.MapScreen_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MapScreen_Paint);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MapScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }

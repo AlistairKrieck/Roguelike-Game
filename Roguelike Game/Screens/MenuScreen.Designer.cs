@@ -74,10 +74,11 @@
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.startButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(1600, 985);
             this.Load += new System.EventHandler(this.MenuScreen_Load);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MenuScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }

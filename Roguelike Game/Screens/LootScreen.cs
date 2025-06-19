@@ -28,7 +28,7 @@ namespace Roguelike_Game
         {
             lootButton.Location = new Point((this.Width - lootButton.Width) / 2, this.Height - 25 - lootButton.Height);
 
-            xpRewardLabel.Location = new Point((this.Width - xpRewardLabel.Width) / 2, (this.Height * 1 / 5) - (xpRewardLabel.Height / 2));
+            xpRewardLabel.Location = new Point((this.Width - xpRewardLabel.Width) / 2, 50);
         }
 
 
@@ -48,6 +48,16 @@ namespace Roguelike_Game
                 xpRewardLabel.Text += $"\n+2 PP to All Attacks!";
                 xpRewardLabel.Text += $"\nYou Fully Healed!";
             }
+
+            if (Form1.player.level == 0)
+            {
+                xpRewardLabel.Text += $"\nYou Learned 'Heal!'";
+            }
+
+            if (Form1.player.level == 1)
+            {
+                xpRewardLabel.Text += $"\nYou Learned 'Big Bash!'";
+            }
         }
 
 
@@ -65,6 +75,16 @@ namespace Roguelike_Game
             Form1.player.CheckLevelUp();
 
             Form1.ChangeScreen(this, new MapScreen());
+        }
+
+        private void LootScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
         }
     }
 }

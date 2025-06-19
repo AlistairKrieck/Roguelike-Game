@@ -49,7 +49,7 @@
             this.xpRewardLabel.Location = new System.Drawing.Point(262, 80);
             this.xpRewardLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.xpRewardLabel.Name = "xpRewardLabel";
-            this.xpRewardLabel.Size = new System.Drawing.Size(316, 227);
+            this.xpRewardLabel.Size = new System.Drawing.Size(316, 365);
             this.xpRewardLabel.TabIndex = 5;
             this.xpRewardLabel.Text = "label1";
             this.xpRewardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -66,6 +66,7 @@
             this.Size = new System.Drawing.Size(1200, 800);
             this.Load += new System.EventHandler(this.LootScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.LootScreen_Paint);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LootScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }

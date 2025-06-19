@@ -27,6 +27,8 @@ namespace Roguelike_Game
             Pen p = new Pen(Color.White);
             SolidBrush sb = new SolidBrush(Color.White);
 
+            MapNode curNode = Array.Find(Form1.map.nodes, n => n.row == currentRow && n.column == currentColumn);
+
             foreach (var n in Form1.map.nodes)
             {
                 if (n.cleared == false)
@@ -39,11 +41,21 @@ namespace Roguelike_Game
                     e.Graphics.FillEllipse(sb, n.x, n.y, n.width, n.height);
                 }
 
+                // Draw a connecting line between the current node and the available next nodes to show the player where they are able to go next
+                if (curNode.row == n.row - 1 && (curNode.column >= n.column - 1 && curNode.column <= n.column + 1 || n.nodeType == "boss"))
+                {
+                    e.Graphics.DrawLine(p, curNode.x + curNode.width / 2, curNode.y +  curNode.height / 2, n.x + n.width / 2, n.y + n.height / 2);
+                }
+
 
                 hpLabel.Text = $"HP: {Form1.player.hp} / {Form1.player.maxHp}";
                 levelLabel.Text = $"LVL: {Form1.player.level}";
                 xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
             }
+
+
+
+
         }
 
         private void MapScreen_Click(object sender, EventArgs e)
@@ -62,6 +74,16 @@ namespace Roguelike_Game
             if (node != null)
             {
                 node.OnClick(this);
+            }
+        }
+
+        private void MapScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
             }
         }
     }

@@ -32,7 +32,7 @@ namespace Roguelike_Game
 
             attacks[0] = new Bash();
             attacks[1] = new Slash();
-            attacks[2] = new PlayerHeal();
+            attacks[2] = new Placeholder();
             attacks[3] = new Placeholder();
 
             sprite = Properties.Resources.stolenPlayer;
@@ -52,9 +52,11 @@ namespace Roguelike_Game
                 maxHp += levelUpHpReward;
                 hp = maxHp;
 
+                // Increase the stats of each attack as is relevent
                 foreach (Attack a in attacks)
                 {
                     // If the attack is not bash or a placeholder, increase its power points
+                    // There doesn't seem to be a way to do "is not" in an if statement, hense the ugliness
                     if (a is Bash || a is Placeholder)
                     {
 
@@ -71,10 +73,15 @@ namespace Roguelike_Game
                         h.UpdateHealing();
                     }
                 }
-
-
             }
 
+            // Give the player the "Heal" attack when they reach level 1
+            if (level == 1 && attacks[2] is Placeholder)
+            {
+                attacks[2] = new PlayerHeal();
+            }
+
+            // Give the player the "Big Bash" attack when they reach level 2
             if (level == 2 && attacks[3] is Placeholder)
             {
                 attacks[3] = new BigBash();

@@ -12,25 +12,6 @@ namespace Roguelike_Game
 {
     public partial class CombatScreen : UserControl
     {
-        //TODO
-        // Display map node connections
-        // Floors
-        // Attack & enemy variety
-        // Esc to close at any time
-        // Fix wacky drawing problem with the past moves display
-        // Animations for attacks, winning or losing a fight
-        // Hotkeys for actions
-        // Stat tracking
-        // Items
-        // Loot rooms
-        // Condence and optimize code
-        // Comments
-        // Prevent player from spamming buttons when its not their turn
-
-        /*
-         * Use an array of enemies that can appear on a specific floor (?)
-        */
-
         public static Enemy enemy;
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
@@ -135,12 +116,6 @@ namespace Roguelike_Game
         {
             if (playerTurn == false)
             {
-                // Disable attack buttons to prevent their use during the enemy turn
-                attackButton1.Enabled = false;
-                attackButton2.Enabled = false;
-                attackButton3.Enabled = false;
-                attackButton4.Enabled = false;
-
                 Refresh();
 
                 //Temp wait to make the game less instant
@@ -154,11 +129,12 @@ namespace Roguelike_Game
                 // Add a line break between each turn
                 pastMovesLabel.Items.Add("", 0);
 
-                // Re-enable the attack buttons
+                // Re-enable the buttons after the UseAttack method
                 attackButton1.Enabled = true;
                 attackButton2.Enabled = true;
                 attackButton3.Enabled = true;
                 attackButton4.Enabled = true;
+                backButton.Enabled = true;
             }
 
             Refresh();
@@ -209,7 +185,6 @@ namespace Roguelike_Game
                 {
                     Form1.ChangeScreen(this, new LootScreen());
                 }
-
             }
 
             // Heal player when using the "Heal" attack
@@ -230,6 +205,13 @@ namespace Roguelike_Game
             }
 
             pastMovesLabel.Items.Add(GetTurnInfo(a));
+
+            // Disable buttons to prevent their use during the enemy turn
+            attackButton1.Enabled = false;
+            attackButton2.Enabled = false;
+            attackButton3.Enabled = false;
+            attackButton4.Enabled = false;
+            backButton.Enabled = false;
 
             playerTurn = false;
         }
@@ -287,10 +269,20 @@ namespace Roguelike_Game
 
             else
             {
-                turn = new ListViewItem($"Turn {turnCount}: Enemy used {atk.name} for {atk.damage} dmg!", 0);
+                turn = new ListViewItem($"Turn {turnCount}: Enemy used {atk.name} for {atk.damage} dmg!  PP: {atk.pp} / {atk.ppMax}", 0);
             }
 
             return turn;
+        }
+
+        private void CombatScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
         }
     }
 }

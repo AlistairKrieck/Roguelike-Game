@@ -12,21 +12,22 @@ namespace Roguelike_Game
         public SmallRobotEnemy()
         {
             // Range of health the enemy can start with
-            minHealthRange = 5;
-            maxHealthRange = 7;
+            minHealthRange = 6;
+            maxHealthRange = 8;
 
             // Range of xp the player will recieve for defeating the enemy
             minXpRange = 2;
-            maxXpRange = 4;
+            maxXpRange = 3;
 
             GenerateEnemy();
 
             sprite = Properties.Resources.stolenRobotEnemy;
 
             // Temp
-            attacks = new Attack[2];
+            attacks = new Attack[3];
             attacks[0] = new Bash();
-            attacks[1] = new EnemyHeal();
+            attacks[1] = new Slash();
+            attacks[2] = new EnemyHeal();
         }
     }
 }

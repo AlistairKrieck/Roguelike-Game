@@ -51,5 +51,15 @@ namespace Roguelike_Game
         {
             Application.Exit();
         }
+
+        private void WinScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
+        }
     }
 }
