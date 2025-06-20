@@ -13,12 +13,14 @@ namespace Roguelike_Game
     public partial class CombatScreen : UserControl
     {
         public static Enemy enemy;
+
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
         SolidBrush redBrush = new SolidBrush(Color.Red);
 
         bool playerTurn = true;
 
+        // Stores which turn you are currently on
         int turnCount = 0;
 
         public CombatScreen()
@@ -87,8 +89,10 @@ namespace Roguelike_Game
 
         private void CombatScreen_Paint(object sender, PaintEventArgs e)
         {
+            // White rectangle that the sprites are inside of
             e.Graphics.FillRectangle(whiteBrush, (this.Width - 900) / 2 - 100, 50, 900, 500);
 
+            // Draw the enemy
             Image spr = enemy.sprite;
             e.Graphics.DrawImage(spr, this.Width * 3 / 5 - spr.Width / 2, 50 + spr.Height);
 
@@ -106,6 +110,7 @@ namespace Roguelike_Game
             e.Graphics.FillRectangle(greenBrush, this.Width * 1 / 5 - pSpr.Width / 2, 115 + 2 * pSpr.Height, pSpr.Width * Form1.player.hp / Form1.player.maxHp, 25);
             playerHealthLabel.Text = $"{Form1.player.hp} / {Form1.player.maxHp}";
 
+            // Show the name and power points of each of the player's attacks
             attackButton1.Text = $"{Form1.player.attacks[0].name}\nPP:{Form1.player.attacks[0].pp} / {Form1.player.attacks[0].ppMax}";
             attackButton2.Text = $"{Form1.player.attacks[1].name}\nPP:{Form1.player.attacks[1].pp} / {Form1.player.attacks[1].ppMax}";
             attackButton3.Text = $"{Form1.player.attacks[2].name}\nPP:{Form1.player.attacks[2].pp} / {Form1.player.attacks[2].ppMax}";
@@ -118,7 +123,8 @@ namespace Roguelike_Game
             {
                 Refresh();
 
-                //Temp wait to make the game less instant
+                // Temp
+                // Wait to make the game less snappy
                 Thread.Sleep(500);
 
                 EnemyAttack();
@@ -144,6 +150,7 @@ namespace Roguelike_Game
         {
             Button b = (Button)sender;
 
+            // Find which attack was used by the player based on the button they pressed
             Attack a = Form1.player.attacks[Convert.ToInt32(b.Name.Substring(12)) - 1];
 
             // Stop the player from using an attack if it's out off pp
@@ -155,13 +162,13 @@ namespace Roguelike_Game
             // Reduce used attacks power points by 1
             a.pp--;
 
-            // Reduce enemy health
+            // If the enemy is not dead, reduce enemy health
             if (enemy.hp - a.damage > 0)
             {
                 enemy.hp -= a.damage;
             }
 
-            // If the enemy dies
+            // If the enemy dies, reset pp and switch to relevant screen
             else if (enemy.hp - a.damage <= 0)
             {
                 gameTimer.Stop();
@@ -171,16 +178,18 @@ namespace Roguelike_Game
                 Refresh();
                 Thread.Sleep(500);
 
-                // Reset power points for all player attacks on enemy kill
+                // Reset power points for all player attacks
                 foreach (Attack atk in Form1.player.attacks)
                 {
                     atk.pp = atk.ppMax;
                 }
 
+                // if the bass is beaten, go to the win screen
                 if (enemy is BossEnemy)
                 {
                     Form1.ChangeScreen(this, new WinScreen());
                 }
+                // if the enemy was not the boss, go to the loot screen
                 else
                 {
                     Form1.ChangeScreen(this, new LootScreen());
@@ -197,7 +206,6 @@ namespace Roguelike_Game
                 {
                     Form1.player.hp += h.healing;
                 }
-
                 else
                 {
                     Form1.player.hp = Form1.player.maxHp;
@@ -213,6 +221,7 @@ namespace Roguelike_Game
             attackButton4.Enabled = false;
             backButton.Enabled = false;
 
+            // Tell the game the player has used their move
             playerTurn = false;
         }
 
@@ -254,6 +263,7 @@ namespace Roguelike_Game
             // Add what the enemy did to the past turns display
             pastMovesLabel.Items.Add(GetTurnInfo(a));
 
+            // Allow the player to take their next turn
             playerTurn = true;
         }
 
@@ -262,16 +272,19 @@ namespace Roguelike_Game
         {
             ListViewItem turn;
 
+            // Get the turn number, which move was used, and how much damage it dealt
             if (playerTurn)
             {
                 turn = new ListViewItem($"Turn {turnCount}: You used {atk.name} for {atk.damage} dmg!", 0);
             }
 
+            // If it was the enemy's turn, also include the remaining pp of the attack
             else
             {
                 turn = new ListViewItem($"Turn {turnCount}: Enemy used {atk.name} for {atk.damage} dmg!  PP: {atk.pp} / {atk.ppMax}", 0);
             }
 
+            // Send the new item to the list view to be displayed
             return turn;
         }
 

@@ -21,9 +21,9 @@ namespace Roguelike_Game
         public int xpReward;
 
         public Attack[] attacks;
-        //public Item[] loot;
         public Image sprite;
 
+        // Set the enemies stats to a random value within their assigned ranges
         public void GenerateEnemy()
         {
             // Create a random object
@@ -34,17 +34,14 @@ namespace Roguelike_Game
             xpReward = random.Next(minXpRange, maxXpRange + 1);
         }
 
-        public void OnDeath()
-        {
-            //Form1.player.xp += xpReward;
-        }
-
+        // Select and output a random attack from the attack array
         public Attack Attack()
         {
             Random random = new Random();
 
             int atk = random.Next(0, attacks.Length);
 
+            // Re-randomize until the chose attack is not out of power points
             while (attacks[atk].pp <= 0)
             {
                 atk = random.Next(0, attacks.Length); ;

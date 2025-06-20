@@ -12,7 +12,7 @@ namespace Roguelike_Game
 {
     public partial class WinScreen : UserControl
     {
-        // For some reason, it didn't rename from win screen when I changed it to game over screen and idk how to change it
+        // For some reason, it didn't rename from WinScreen when I changed it to GameOverScreen and idk how to change it
         public WinScreen()
         {
             InitializeComponent();
@@ -20,6 +20,7 @@ namespace Roguelike_Game
             Refresh();
         }
 
+        // Init the positions of all screen elements, and output whether the player has won or lost
         private void WinScreen_Load(object sender, EventArgs e)
         {
             menuButton.Location = new Point((this.Width - menuButton.Width) / 2, this.Height - 125 - menuButton.Height);

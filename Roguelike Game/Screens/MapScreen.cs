@@ -12,6 +12,7 @@ namespace Roguelike_Game
 {
     public partial class MapScreen : UserControl
     {
+        // Store the position of the current node relative to the other nodes
         public static int currentRow = 0;
         public static int currentColumn = 3;
 
@@ -19,6 +20,7 @@ namespace Roguelike_Game
         {
             InitializeComponent();
 
+            // Draw the screen once
             Refresh();
         }
 
@@ -27,15 +29,16 @@ namespace Roguelike_Game
             Pen p = new Pen(Color.White);
             SolidBrush sb = new SolidBrush(Color.White);
 
+            // Find which node the player is currently on
             MapNode curNode = Array.Find(Form1.map.nodes, n => n.row == currentRow && n.column == currentColumn);
 
             foreach (var n in Form1.map.nodes)
             {
+                // Draw an full circle for each cleared node, and an empty one for uncleared nodes
                 if (n.cleared == false)
                 {
                     e.Graphics.DrawEllipse(p, n.x, n.y, n.width, n.height);
                 }
-
                 else
                 {
                     e.Graphics.FillEllipse(sb, n.x, n.y, n.width, n.height);
@@ -47,15 +50,11 @@ namespace Roguelike_Game
                     e.Graphics.DrawLine(p, curNode.x + curNode.width / 2, curNode.y +  curNode.height / 2, n.x + n.width / 2, n.y + n.height / 2);
                 }
 
-
+                // Tell the player their current stats
                 hpLabel.Text = $"HP: {Form1.player.hp} / {Form1.player.maxHp}";
                 levelLabel.Text = $"LVL: {Form1.player.level}";
                 xpLabel.Text = $"XP: {Form1.player.xp} / {Form1.player.xpToNextLevel[Form1.player.level]}";
             }
-
-
-
-
         }
 
         private void MapScreen_Click(object sender, EventArgs e)

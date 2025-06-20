@@ -10,9 +10,11 @@ namespace Roguelike_Game
     public class MapNode
     {
         public static Random random = new Random();
+
         // Position
         public int x, y, row, column;
 
+        // Size
         public int height = 40;
         public int width = 40;
 
@@ -70,7 +72,7 @@ namespace Roguelike_Game
             }
         }
 
-
+        // Prevent the player from accessing nodes that they have passed
         private void PassNodes()
         {
             foreach (MapNode n in Form1.map.nodes)
@@ -82,11 +84,12 @@ namespace Roguelike_Game
             }
         }
 
-
+        // Get a random type of enemy for combat nodes based on the floor
         private Enemy GenEnemyNode()
         {
             Enemy e = new Enemy();
 
+            // Set the enemy to a boss
             if (nodeType == "boss")
             {
                 e = new BossEnemy();

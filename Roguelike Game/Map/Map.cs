@@ -24,6 +24,7 @@ namespace Roguelike_Game
         // Stores each map node in an array
         public MapNode[] nodes;
 
+        // Unused
         public int floor;
 
         public Map()
@@ -36,7 +37,7 @@ namespace Roguelike_Game
             // Init nodes array with a size of the sum of all nodes
             nodes = new MapNode[1 + row1Count + row2Count + row3Count + 1];
 
-            // Create starting node where the player will begin
+            // Start node
             nodes[0] = new MapNode(0, 3, UC.Width * 4 / 8 - nodeSize / 2, UC.Height * 7 / 8 - nodeSize / 2, "start");
             nodes[0].passed = nodes[0].cleared = true;
 
@@ -53,10 +54,12 @@ namespace Roguelike_Game
             nodes[6] = new MapNode(3, 2, UC.Width * 2 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, GetRandNodeType());
             nodes[7] = new MapNode(3, 4, UC.Width * 6 / 8 - nodeSize / 2, UC.Height * 4 / 8 - nodeSize / 2, GetRandNodeType());
 
-            // Boss Room
+            // Boss node
             nodes[8] = new BossNode(4, 3, UC.Width * 4 / 8 - width / 2, UC.Height * 2 / 8 - height / 2);
         }
 
+        // Generate a random node type
+        // Redundent in current version
         public string GetRandNodeType()
         {
             // Default to combat room in case of errors

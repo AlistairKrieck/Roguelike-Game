@@ -12,7 +12,7 @@ namespace Roguelike_Game
         public string name;
 
         // Power points
-        // Limits the number of times the player can use an attack per battle
+        // Stores the number of uses each attack has
         public int pp, ppMax;
     }
 }

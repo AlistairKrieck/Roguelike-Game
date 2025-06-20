@@ -18,12 +18,14 @@ namespace Roguelike_Game
         {
             InitializeComponent();
 
+            // Find the loot the player has recieved based on what enemy they just defeated
             GetLoot();
 
+            // Draw the screen once
             Refresh();
         }
 
-
+        // Init the position of the labels
         private void LootScreen_Load(object sender, EventArgs e)
         {
             lootButton.Location = new Point((this.Width - lootButton.Width) / 2, this.Height - 25 - lootButton.Height);
@@ -31,15 +33,19 @@ namespace Roguelike_Game
             xpRewardLabel.Location = new Point((this.Width - xpRewardLabel.Width) / 2, 50);
         }
 
-
+        // Find the xp the player was rewarded by the defeated enemy
         public void GetLoot()
         {
+            // Get the enemy from combat screen
             Enemy enemy = CombatScreen.enemy;
 
+            // Store the amount of xp the enemy rewarded
             xpReward = enemy.xpReward;
 
+            // Tell the player how much xp they earned
             xpRewardLabel.Text = $"You Gained {xpReward} XP!";
 
+            // Tell the player if they leveled up
             if (Form1.player.xp + xpReward >= Form1.player.xpToNextLevel[Form1.player.level])
             {
                 xpRewardLabel.Text += $"\n";
@@ -49,11 +55,11 @@ namespace Roguelike_Game
                 xpRewardLabel.Text += $"\nYou Fully Healed!";
             }
 
+            // Tell the player if they learned any new moves
             if (Form1.player.level == 0)
             {
                 xpRewardLabel.Text += $"\nYou Learned 'Heal!'";
             }
-
             if (Form1.player.level == 1)
             {
                 xpRewardLabel.Text += $"\nYou Learned 'Big Bash!'";
@@ -74,6 +80,7 @@ namespace Roguelike_Game
             // Level up the player if xp meets requirement
             Form1.player.CheckLevelUp();
 
+            // Go back to the map
             Form1.ChangeScreen(this, new MapScreen());
         }
 
