@@ -53,16 +53,16 @@ namespace Roguelike_Game
                 xpRewardLabel.Text += $"\n+3 to Max HP!";
                 xpRewardLabel.Text += $"\n+2 PP to All Attacks!";
                 xpRewardLabel.Text += $"\nYou Fully Healed!";
-            }
 
-            // Tell the player if they learned any new moves
-            if (Form1.player.level == 0)
-            {
-                xpRewardLabel.Text += $"\nYou Learned 'Heal!'";
-            }
-            if (Form1.player.level == 1)
-            {
-                xpRewardLabel.Text += $"\nYou Learned 'Big Bash!'";
+                // Tell the player if they learned any new moves
+                if (Form1.player.level == 0)
+                {
+                    xpRewardLabel.Text += $"\nYou Learned 'Heal!'";
+                }
+                if (Form1.player.level == 1)
+                {
+                    xpRewardLabel.Text += $"\nYou Learned 'Big Bash!'";
+                }
             }
         }
 
